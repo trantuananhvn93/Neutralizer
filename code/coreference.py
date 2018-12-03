@@ -3,6 +3,7 @@
 
 import en_coref_md
 
+
 p = '''Robert Bowers, who opened fire at the Tree of Life Synagogue, in Pittsburgh, this morning, killing at least eleven people, was not evasive about his intent. 
 He reportedly made anti-Semitic statements during the shooting, and just beforehand posted on Gab, a right-wing social network, about hias, a Jewish nonprofit that supports refugees.
  “hias likes to bring invaders in that kill our people,” he wrote. “I can’t sit by and watch my people get slaughtered.” Earlier, he had suggested that he supported far-right nationalism but believed that President Trump was captive to a Jewish conspiracy.
