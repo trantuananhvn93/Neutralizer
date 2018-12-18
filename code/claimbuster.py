@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import dataIO
 import requests
 import json
@@ -13,7 +14,7 @@ def split_text(text):
     sentences = sent_tokenize(text)
     for s in sentences:
         cache += ' ' + s
-        if len(cache)<2000 :
+        if len(cache)<1500 :
             # print block_nr
             text_blocks[block_nr] = cache
         else:
@@ -28,33 +29,30 @@ def query_api(p):
     response = requests.get(query)
     response = json.loads(response.content)
     # Print the status code of the response.
-    print(json.dumps(response, indent=4, sort_keys=True))
+    #print(json.dumps(response, indent=4, sort_keys=True))
     return response
 
-def get_CB_score():
-    item = dataIO.readData(2)
-    # print item.get('article')
-    text = item.get('article').decode('utf-8')
+def get_CB_score(text):
     splitT = split_text(text)
     # print splitT
 
     total_scored_article = []
     for block in splitT:
         scored_item = query_api(block)
-        for sentence in scored_item.get('results'):
-            total_scored_article.append(sentence)
+        for scored_block in scored_item.get('results'):
+            total_scored_article.append(scored_block)
     return total_scored_article
 
-def get_CB_thesholded_article(threshold):
-    scored_article = get_CB_score()
+def get_CB_thesholded_article(text, threshold):
+    scored_article = get_CB_score(text)
     out = ''
     for sentence in scored_article:
         if float(sentence.get('score')) > threshold:
             out += sentence.get('text')
     return out
 
-def get_CB_thesholded_article_top(amount_sentences):
-    scored_article = get_CB_score()
+def get_CB_thesholded_article_top(text, amount_sentences):
+    scored_article = get_CB_score(text)
     sorted_article = sorted(scored_article, key=lambda k: k['score'], reverse=True )
     threshold = float(sorted_article[amount_sentences-1].get('score'))
     out = ''
@@ -63,8 +61,8 @@ def get_CB_thesholded_article_top(amount_sentences):
             out += sentence.get('text')
     return out
 
-def get_CB_thesholded_article_perc(percentage):
-    scored_article = get_CB_score()
+def get_CB_thesholded_article_perc(text, percentage):
+    scored_article = get_CB_score(text)
     sorted_article = sorted(scored_article, key=lambda k: k['score'], reverse=True )
     amount_sentences = int(round(percentage*len(scored_article), 0))
     threshold = float(sorted_article[amount_sentences-1].get('score'))
@@ -74,5 +72,35 @@ def get_CB_thesholded_article_perc(percentage):
             out += sentence.get('text')
     return out
 
+item = dataIO.readData(2)
+# print item.get('article')
+text = item.get('article').decode('utf-8')
 
-print get_CB_thesholded_article_perc(0.1)
+f= open("Summaries/CB_scores_summaries.txt","w+")
+
+dirname = os.path.dirname(os.path.abspath(__file__))
+textrankPath = os.path.join(dirname, '../Summaries/textrank/')
+tfidfPath = os.path.join(dirname, '../Summaries/tf-idf/')
+
+f.write("TEXTRANK \n")
+for filename in os.listdir(textrankPath):    
+    with open(textrankPath + filename) as file:
+        print filename
+        data = file.read()
+        scored_article = get_CB_score(data)
+        score = 0.0
+        for sentence in scored_article:
+            score += float(sentence.get('score'))
+        f.write("%s %f\r\n" % (filename, score))
+   
+f.write("TF-IDF \n")
+for filename in os.listdir(tfidfPath):    
+    with open(tfidfPath + filename) as file:
+        print filename
+        data = file.read()
+        scored_article = get_CB_score(data)
+        score = 0.0
+        for sentence in scored_article:
+            score += float(sentence.get('score'))
+        f.write("%s %f\r\n" % (filename, score))
+f.close()
