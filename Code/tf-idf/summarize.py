@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import argparse
 import codecs
-import pickle
+import math
 import nltk
 import numpy
+import pickle
 import re
 import sys
 
@@ -24,11 +25,11 @@ def parse_dataset(data_file):
         cols = re.split("\t", line.rstrip())
         if line_no == 0:
             for idx, col in enumerate(cols):
-                if col == "id":
+                if col == 'id':
                     id_idx = idx
-                elif col == "title":
+                elif col == 'title':
                     title_idx = idx
-                elif col == "article":
+                elif col == 'article':
                     article_idx = idx
         else:
             titles[cols[id_idx]] = cols[title_idx]
@@ -38,7 +39,6 @@ def parse_dataset(data_file):
     f.close()
 
     return titles, articles
-
 
 def load_corpus(filename):
     """
@@ -54,19 +54,6 @@ def tokenize_sentence(text):
 def tokenize_word(sentence):
     tokens = nltk.word_tokenize(sentence)
     return tokens
-
-def read_document(input_file):
-    """
-    """
-    text = []
-    f = codecs.open(input_file, 'r', encoding='utf8')
-
-    for line in f:
-        text.append(line.rstrip())
-
-    f.close()
-
-    return re.sub("\s+", " ", " ".join(text))
 
 def preprocess_document(text):
     """
@@ -135,7 +122,6 @@ def filter_stop_words(text):
 
     return ' '.join(tokens_no_stop_words)
 
-
 def similarity_score(title, sentence):
     """
     """
@@ -146,7 +132,7 @@ def similarity_score(title, sentence):
     score = (len(similar) * 0.1 ) / len(title_tokens)
     return score
 
-def rank_sentences(doc, doc_matrix, feature_names, top_n=5):
+def rank_sentences(doc, doc_matrix, feature_names, top_n=10):
     """
     """
     nouns = ['NN', 'NNS', 'NNP', 'NNPS']
@@ -182,54 +168,71 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Summarizer")
     parser.add_argument('--dataset',
                         '-d',
-                        default='articles.tsv',
+                        default='../../Dataset/articles.tsv',
                         help="Dataset file",
                         required=False)
     parser.add_argument('--id',
                         '-i',
-                        default='1',
                         help="Article ID",
+                        required=False)
+    parser.add_argument('--output',
+                        '-o',
+                        default='../../Results/summaries.tsv',
+                        help="Output file",
                         required=False)
     parser.add_argument('--number',
                         '-n',
-                        default='5',
+                        default='10',
                         help="Number of sentences in summary",
                         required=False)
     args = parser.parse_args()
 
+    # Load background corpus
+    corpus = load_corpus('corpus.pkl')
+
     # Parse dataset
     titles, articles = parse_dataset(args.dataset)
 
-    # Load background corpus
-    corpus = load_corpus("corpus.pkl")
+    if args.id is None:
+        ids = list(titles.keys())
+    else:
+        ids = [args.id]
 
-    # Load document to summarize, and clean
-    #title = "One Day In, Florida's Senate Recount Gets Messier"
-    #doc_raw = read_document('article_florida_midterms.txt')
-    title = titles[args.id]
-    doc_raw = articles[args.id]
-    doc_clean = preprocess_document(doc_raw)
-    doc_no_stops = filter_stop_words(doc_clean)
+    f = codecs.open(args.output, 'w', encoding='utf8')
+    f.write("id\tsummary\n") # header
 
-    # Merge corpus and document data
-    train_data = set(corpus + [doc_no_stops])
+    for id in ids:
+        print('Generating summary ' + id)
 
-    # Fit and transform term frequencies into vector
-    count_vect = CountVectorizer()
-    count_vect = count_vect.fit(train_data)
-    freq_term_matrix = count_vect.transform(train_data)
-    feature_names = count_vect.get_feature_names()
-    tfidf = TfidfTransformer(norm="l2")
-    tfidf.fit(freq_term_matrix)
+        # Load document to summarize, and clean
+        title = titles[id]
+        doc_raw = articles[id]
+        doc_clean = preprocess_document(doc_raw)
+        doc_no_stops = filter_stop_words(doc_clean)
 
-    # Get tf-idf matrix
-    doc_freq_term_matrix = count_vect.transform([doc_no_stops])
-    doc_tfidf_matrix = tfidf.transform(doc_freq_term_matrix)
-    doc_dense = doc_tfidf_matrix.todense()
-    doc_matrix = doc_dense.tolist()[0]
+        # Merge corpus and document data
+        train_data = set(corpus + [doc_no_stops])
 
-    # Grab top-ranked sentences to generate summary
-    top_sentences = rank_sentences(doc_no_stops, doc_matrix, feature_names, int(args.number))
-    summary = [tokenize_sentence(doc_clean)[i] for i in [pair[0] for pair in top_sentences]]
-    for sent in summary:
-        print(sent)
+        # Fit and transform term frequencies into vector
+        count_vect = CountVectorizer()
+        count_vect = count_vect.fit(train_data)
+        freq_term_matrix = count_vect.transform(train_data)
+        feature_names = count_vect.get_feature_names()
+        tfidf = TfidfTransformer(norm="l2")
+        tfidf.fit(freq_term_matrix)
+
+        # Get tf-idf matrix
+        doc_freq_term_matrix = count_vect.transform([doc_no_stops])
+        doc_tfidf_matrix = tfidf.transform(doc_freq_term_matrix)
+        doc_dense = doc_tfidf_matrix.todense()
+        doc_matrix = doc_dense.tolist()[0]
+
+        # Grab top-ranked sentences to generate summary
+        top_sentences = rank_sentences(doc_no_stops, doc_matrix, feature_names, int(args.number))
+        summary = [tokenize_sentence(doc_clean)[i] for i in [pair[0] for pair in top_sentences]]
+        summary_text = ' '.join(summary)
+
+        # Print summary to output file
+        f.write(id + "\t" + summary_text + "\n")
+
+    f.close()
