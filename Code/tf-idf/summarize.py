@@ -114,7 +114,6 @@ def filter_stop_words(text):
     stop_words = stopwords.words('english')
     tokens_raw = text.split()
     tokens_no_stop_words = []
-    #print(stop_words)
 
     for token in tokens_raw:
         if token not in stop_words:
@@ -135,10 +134,11 @@ def similarity_score(title, sentence):
 def rank_sentences(doc, doc_matrix, feature_names, top_n=10):
     """
     """
-    nouns = ['NN', 'NNS', 'NNP', 'NNPS']
+    #nouns = ['NN', 'NNS', 'NNP', 'NNPS']
+    valid_tags = ['NN', 'NNS', 'NNP', 'NNPS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
     sents = tokenize_sentence(doc) # list of tokenized sentences
     sentences = [tokenize_word(sent) for sent in sents] # list of list of tokenized words
-    sentences = [[w for w in sent if nltk.pos_tag([w])[0][1] in nouns]
+    sentences = [[w for w in sent if nltk.pos_tag([w])[0][1] in valid_tags]
                   for sent in sentences]
     tfidf_sent = [[doc_matrix[feature_names.index(w.lower())]
                    for w in sent if w.lower() in feature_names]
@@ -151,9 +151,6 @@ def rank_sentences(doc, doc_matrix, feature_names, top_n=10):
     # Apply similarity score weights
     similarity_scores = [similarity_score(title, sent) for sent in sents]
     sent_values = numpy.array(sent_values) + numpy.array(similarity_scores)
-
-    # Apply position weights
-    #ranked_sents = [sent*(i/len(sent_values)) for i, sent in enumerate(sent_values)]
 
     # Rank sentences by values, then order top_n sentences in document order
     ranked_sents = [pair for pair in zip(range(len(sent_values)), sent_values)]
