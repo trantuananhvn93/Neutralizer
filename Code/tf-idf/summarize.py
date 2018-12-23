@@ -15,6 +15,9 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 def parse_dataset(data_file):
     """
+    Parse dataset
+    :param data_file:
+    :return:
     """
     titles = {}
     articles = {}
@@ -42,21 +45,19 @@ def parse_dataset(data_file):
 
 def load_corpus(filename):
     """
+    Unpickle corpus file
+    :param filename:
+    :return:
     """
     file_object = open(filename, 'rb')
     corpus = pickle.load(file_object)
     return corpus
 
-def tokenize_sentence(text):
-    sentences = nltk.sent_tokenize(text)
-    return sentences
-
-def tokenize_word(sentence):
-    tokens = nltk.word_tokenize(sentence)
-    return tokens
-
 def preprocess_document(text):
     """
+    Preprocess text
+    :param text:
+    :return:
     """
     text = clean_acronyms(text)
     text = clean_misc(text)
@@ -65,6 +66,9 @@ def preprocess_document(text):
 
 def clean_acronyms(text):
     """
+    Remove periods from acronyms to improve sentence tokenization
+    :param text:
+    :return:
     """
     r = re.compile(r'(?:(?<=\.|\s)[A-Z]\.)+')
     acronyms = r.findall(text)
@@ -74,6 +78,9 @@ def clean_acronyms(text):
 
 def clean_misc(text):
     """
+    Remove periods from common words to improve sentence tokenization
+    :param text:
+    :return:
     """
     text = text.replace('Dr.', 'Dr')
     text = text.replace('Mr.', 'Mr')
@@ -110,6 +117,9 @@ def clean_misc(text):
 
 def filter_stop_words(text):
     """
+    Remove stop words
+    :param text:
+    :return:
     """
     stop_words = stopwords.words('english')
     tokens_raw = text.split()
@@ -123,6 +133,10 @@ def filter_stop_words(text):
 
 def similarity_score(title, sentence):
     """
+    Calculate sentence-title similarity score
+    :param title:
+    :param sentence:
+    :return:
     """
     title = filter_stop_words(title.lower())
     sentence = filter_stop_words(sentence.lower())
@@ -131,13 +145,19 @@ def similarity_score(title, sentence):
     score = (len(similar) * 0.1 ) / len(title_tokens)
     return score
 
-def rank_sentences(doc, doc_matrix, feature_names, top_n=10):
+def rank_sentences(doc, doc_matrix, feature_names, title, top_n=10):
     """
+    Rank sentences for summary
+    :param doc:
+    :param doc_matrix:
+    :param feature_names:
+    :param top_n:
+    :return:
     """
     #nouns = ['NN', 'NNS', 'NNP', 'NNPS']
     valid_tags = ['NN', 'NNS', 'NNP', 'NNPS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
-    sents = tokenize_sentence(doc) # list of tokenized sentences
-    sentences = [tokenize_word(sent) for sent in sents] # list of list of tokenized words
+    sents = nltk.sent_tokenize(doc) # list of tokenized sentences
+    sentences = [nltk.word_tokenize(sent) for sent in sents] # list of list of tokenized words
     sentences = [[w for w in sent if nltk.pos_tag([w])[0][1] in valid_tags]
                   for sent in sentences]
     tfidf_sent = [[doc_matrix[feature_names.index(w.lower())]
@@ -159,43 +179,15 @@ def rank_sentences(doc, doc_matrix, feature_names, top_n=10):
 
     return ranked_sents
 
-if __name__ == '__main__':
-
-    # Parse arguments
-    parser = argparse.ArgumentParser(description="Summarizer")
-    parser.add_argument('--dataset',
-                        '-d',
-                        default='../../Dataset/articles.tsv',
-                        help="Dataset file",
-                        required=False)
-    parser.add_argument('--id',
-                        '-i',
-                        help="Article ID",
-                        required=False)
-    parser.add_argument('--output',
-                        '-o',
-                        default='../../Results/summaries.tsv',
-                        help="Output file",
-                        required=False)
-    parser.add_argument('--number',
-                        '-n',
-                        default='10',
-                        help="Number of sentences in summary",
-                        required=False)
-    args = parser.parse_args()
-
-    # Load background corpus
-    corpus = load_corpus('corpus.pkl')
-
-    # Parse dataset
-    titles, articles = parse_dataset(args.dataset)
-
-    if args.id is None:
-        ids = list(titles.keys())
-    else:
-        ids = [args.id]
-
-    f = codecs.open(args.output, 'w', encoding='utf8')
+def generate_summary(titles, articles, ids, output_file, number):
+    '''
+    Generate summary
+    :param ids:
+    :param output_file:
+    :param number:
+    :return:
+    '''
+    f = codecs.open(output_file, 'w', encoding='utf8')
     f.write("id\tsummary\n") # header
 
     for id in ids:
@@ -225,11 +217,51 @@ if __name__ == '__main__':
         doc_matrix = doc_dense.tolist()[0]
 
         # Grab top-ranked sentences to generate summary
-        top_sentences = rank_sentences(doc_no_stops, doc_matrix, feature_names, int(args.number))
-        summary = [tokenize_sentence(doc_clean)[i] for i in [pair[0] for pair in top_sentences]]
+        top_sentences = rank_sentences(doc_no_stops, doc_matrix, feature_names, title, int(number))
+        summary = [nltk.sent_tokenize(doc_clean)[i] for i in [pair[0] for pair in top_sentences]]
         summary_text = ' '.join(summary)
 
         # Print summary to output file
         f.write(id + "\t" + summary_text + "\n")
 
     f.close()
+
+
+if __name__ == '__main__':
+
+    # Parse arguments
+    parser = argparse.ArgumentParser(description="Summarizer")
+    parser.add_argument('--dataset',
+                        '-d',
+                        default='articles.tsv',
+                        help="Dataset file",
+                        required=False)
+    parser.add_argument('--id',
+                        '-i',
+                        help="Article ID",
+                        required=False)
+    parser.add_argument('--output',
+                        '-o',
+                        default='summaries.tsv',
+                        help="Output file",
+                        required=False)
+    parser.add_argument('--number',
+                        '-n',
+                        default='10',
+                        help="Number of sentences in summary",
+                        required=False)
+    args = parser.parse_args()
+
+    # Load background corpus
+    corpus = load_corpus('corpus.pkl')
+
+    # Parse dataset
+    titles, articles = parse_dataset(args.dataset)
+
+    if args.id is None:
+        ids = list(titles.keys())
+    else:
+        ids = [args.id]
+
+    # Generate summaries
+    generate_summary(titles, articles, ids, args.output, args.number)
