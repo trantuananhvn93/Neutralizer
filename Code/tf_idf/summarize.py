@@ -19,8 +19,16 @@ def parse_dataset(data_file):
     :param data_file:
     :return:
     """
-    titles = {}
     articles = {}
+    articles["title"] = {} # e.g. articles["title"]["article_id"] = "xxx"
+    articles["article"] = {}
+    articles["publication"] = {}
+    articles["topic"] = {}
+    articles["topic_id"] = {}
+    articles["url"] = {}
+    topics = {} # e.g. topics[topic_id] = [article_id_1, article_id_2, ...]
+
+    articles["topic"] = {}    # e.g. articles["topic"]["topic_id"] = [article_id_1, article_id_2, ..]
     line_no = 0
     f = codecs.open(data_file, 'r', encoding='utf8')
 
@@ -28,20 +36,37 @@ def parse_dataset(data_file):
         cols = re.split("\t", line.rstrip())
         if line_no == 0:
             for idx, col in enumerate(cols):
-                if col == 'id':
+                if col == 'article_id':
                     id_idx = idx
                 elif col == 'title':
                     title_idx = idx
-                elif col == 'article':
+                elif col == 'article' or col == 'summary':
                     article_idx = idx
+                elif col == 'publication':
+                    pub_idx = idx
+                elif col == 'topic':
+                    topic_idx = idx
+                elif col == 'topic_id':
+                    topic_id_idx = idx
+                elif col == 'url':
+                    url_idx = idx
+
         else:
-            titles[cols[id_idx]] = cols[title_idx]
-            articles[cols[id_idx]] = cols[article_idx]
+            articles["title"][cols[id_idx]] = cols[title_idx]
+            articles["article"][cols[id_idx]] = cols[article_idx]
+            articles["publication"][cols[id_idx]] = cols[pub_idx]
+            articles["topic"][cols[id_idx]] = cols[topic_idx]
+            articles["topic_id"][cols[id_idx]] = cols[topic_id_idx]
+            articles["url"][cols[id_idx]] = cols[url_idx]
+            if cols[topic_id_idx] in topics:
+                topics[cols[topic_id_idx]].append(cols[id_idx])
+            else:
+                topics[cols[topic_id_idx]] = [cols[id_idx]]
         line_no += 1
 
     f.close()
 
-    return titles, articles
+    return articles, topics
 
 def load_corpus(filename):
     """
@@ -179,7 +204,7 @@ def rank_sentences(doc, doc_matrix, feature_names, title, top_n=10):
 
     return ranked_sents
 
-def generate_summary(titles, articles, ids, output_file, number):
+def generate_summary(articles, ids, output_file, number):
     '''
     Generate summary
     :param ids:
@@ -188,14 +213,14 @@ def generate_summary(titles, articles, ids, output_file, number):
     :return:
     '''
     f = codecs.open(output_file, 'w', encoding='utf8')
-    f.write("id\tsummary\n") # header
+    f.write("article_id\ttopic_id\ttopic\ttitle\tpublication\turl\tsummary\n") # header
 
     for id in ids:
-        print('Generating summary ' + id)
+        print('Generating summary ' + str(id))
 
         # Load document to summarize, and clean
-        title = titles[id]
-        doc_raw = articles[id]
+        title = articles["title"][id]
+        doc_raw = articles["article"][id]
         doc_clean = preprocess_document(doc_raw)
         doc_no_stops = filter_stop_words(doc_clean)
 
@@ -222,7 +247,8 @@ def generate_summary(titles, articles, ids, output_file, number):
         summary_text = ' '.join(summary)
 
         # Print summary to output file
-        f.write(id + "\t" + summary_text + "\n")
+        f.write(id + "\t" + articles["topic_id"][id] + "\t" + articles["topic"][id] + "\t" + articles["title"][id] +
+                "\t" + articles["publication"][id] + "\t" + articles["url"][id] + "\t" + summary_text + "\n")
 
     f.close()
 
@@ -231,18 +257,18 @@ if __name__ == '__main__':
 
     # Parse arguments
     parser = argparse.ArgumentParser(description="Summarizer")
+    parser.add_argument('--article',
+                        '-a',
+                        help="Article ID",
+                        required=False)
     parser.add_argument('--dataset',
                         '-d',
-                        default='articles.tsv',
+                        default='../../Dataset/articles.tsv',
                         help="Dataset file",
-                        required=False)
-    parser.add_argument('--id',
-                        '-i',
-                        help="Article ID",
                         required=False)
     parser.add_argument('--output',
                         '-o',
-                        default='summaries.tsv',
+                        default='../../Results/summaries.tsv',
                         help="Output file",
                         required=False)
     parser.add_argument('--number',
@@ -250,18 +276,25 @@ if __name__ == '__main__':
                         default='10',
                         help="Number of sentences in summary",
                         required=False)
+    parser.add_argument('--topic',
+                        '-t',
+                        help="Topic ID",
+                        required=False)
     args = parser.parse_args()
 
     # Load background corpus
     corpus = load_corpus('corpus.pkl')
 
     # Parse dataset
-    titles, articles = parse_dataset(args.dataset)
+    articles, topics = parse_dataset(args.dataset)
 
-    if args.id is None:
-        ids = list(titles.keys())
+    if args.article is None:
+        ids = list(articles["article"].keys())
     else:
-        ids = [args.id]
+        ids = [args.article]
+
+    if args.topic is not None:
+        ids = topics[args.topic]
 
     # Generate summaries
-    generate_summary(titles, articles, ids, args.output, args.number)
+    generate_summary(articles, ids, args.output, args.number)
