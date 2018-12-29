@@ -73,7 +73,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Summarizer")
     parser.add_argument('--dataset',
                         '-d',
-                        default='../Results/summaries.tsv',
+                        default='../Results/summaries_top5.tsv',
                         help="Dataset file",
                         required=False)
     parser.add_argument('--output',
