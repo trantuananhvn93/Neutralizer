@@ -52,7 +52,7 @@ def get_sentence_ids(i, length):
     b = i % length
     return a, b
 
-def similarity_matrix(ids, articles, output_file):
+def similarity_matrix(ids, articles, output_file, sentences_file):
     '''
     Calculate similarity matrix for articles in a given topic
     :param ids:
@@ -61,13 +61,22 @@ def similarity_matrix(ids, articles, output_file):
     '''
     all_sents = []
     article_id = [] # article_id[sentence] = id
-    f = codecs.open(output_file, 'w', encoding='utf8')
+    fo = codecs.open(output_file, 'w', encoding='utf8')
+    fs = codecs.open(sentences_file, 'w', encoding='utf8')
+    fo.write("sentence1_id\tsentence2_id\tsentence1\tsentence2\tsimilarity_score\n")  # header
+    fs.write("sentence_id\tarticle_id\ttopic_id\ttopic\ttitle\tpublication\turl\tsentence\n")  # header
 
     for id in ids:
         sents = nltk.sent_tokenize(articles["article"][id])
         for i in range(len(sents)):
             article_id.append(id)
         all_sents += sents
+
+    # Print sentences file
+    for idx, id in enumerate(article_id):
+        fs.write(str(idx) + "\t" + str(id) + "\t" + articles["topic_id"][id] + "\t" + articles["topic"][id] + "\t" +
+                 articles["title"][id] + "\t" + articles["publication"][id] + "\t" + articles["url"][id] + "\t" +
+                 all_sents[idx] + "\n")
 
     all_sents_1 = []
     all_sents_2 = all_sents * len(all_sents)
@@ -79,17 +88,11 @@ def similarity_matrix(ids, articles, output_file):
 
     for i, s in enumerate(sims):
         a, b = get_sentence_ids(i, len(all_sents))
-        f.write(str(a) + "\t" + str(b) + "\t" + all_sents_1[i] + "\t" + all_sents_2[i] + "\t" + str(s*len(all_sents_2)) + "\n")
-        #f.write(str(a) + "\t" + str(b) + "\t" + all_sents[a] + "\t" + all_sents[b] + "\t" + str(s*len(all_sents_2)) + "\n")
+        fo.write(str(a) + "\t" + str(b) + "\t" + all_sents_1[i] + "\t" + all_sents_2[i] + "\t" + str(s*len(all_sents_2)) + "\n")
+        #fo.write(str(a) + "\t" + str(b) + "\t" + all_sents[a] + "\t" + all_sents[b] + "\t" + str(s*len(all_sents_2)) + "\n")
 
-    #for i, sent in enumerate(all_sents):
-    #    print("Batch " + str(i + 1))
-    #    sentences1 = [sent] * len(all_sents)
-    #    sims = calculate_similarity(sentences1, all_sents)
-    #    for j, s in enumerate(sims):
-    #        f.write(str(i) + "\t" + str(j) + "\t" + sentences1[j] + "\t" + all_sents[j] + "\t" + str(s*len(all_sents)) + "\n")
-
-    f.close()
+    fo.close()
+    fs.close()
 
 
 if __name__ == '__main__':
@@ -106,6 +109,11 @@ if __name__ == '__main__':
                         default='../Results/similarity_matrix_top5.tsv',
                         help="Output file",
                         required=False)
+    parser.add_argument('--sentences',
+                        '-s',
+                        default='../Results/sentences_top5.tsv',
+                        help="Sentences file",
+                        required=False)
     parser.add_argument('--topic',
                         '-t',
                         default='1',
@@ -120,4 +128,4 @@ if __name__ == '__main__':
     ids = topics[args.topic]
 
     # Generate similarity matrix
-    similarity_matrix(ids, articles, args.output)
+    similarity_matrix(ids, articles, args.output, args.sentences)

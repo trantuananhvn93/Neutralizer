@@ -6,18 +6,21 @@ OPTIND=1
 # Initialize variables
 dataset=../Results/summaries_top5.tsv
 output_file=../Results/similarity_matrix_top5.tsv
+sentence_file=../Results/sentences_top5.tsv
 topic=1
 
 # Process arguments
-while getopts "h?d:o:t:" opt; do
+while getopts "h?d:o:s:t:" opt; do
     case "$opt" in
     h|\?)
-        echo "Usage: ./semantic_similarity.sh [-d dataset] [-o output_file] [-t topic]"
+        echo "Usage: ./semantic_similarity.sh [-d dataset] [-o output_file] [-s sentence_file] [-t topic]"
         exit 0
         ;;
     d)  dataset=$OPTARG
         ;;
     o)  output_file=$OPTARG
+        ;;
+    s)  sentence_file=$OPTARG
         ;;
     t)  topic=$OPTARG
         ;;
@@ -29,4 +32,4 @@ shift "$((OPTIND-1))"
 
 # Semantic similarity
 source set_tfhub_cache.sh # set env var
-python3.6 semantic_similarity.py -d $dataset -o $output_file -t $topic
+python3.6 semantic_similarity.py -d $dataset -o $output_file -s $sentence_file -t $topic
