@@ -38,7 +38,19 @@ def calculate_similarity(sentences1, sentences2):
                 sts_input1: sentences1,
                 sts_input2: sentences2
             })
+
     return gse_sims
+
+def get_sentence_ids(i, length):
+    '''
+    Get sentence IDs given index in matrix and size of matrix
+    :param i:
+    :param length:
+    :return:
+    '''
+    a = i // length
+    b = i % length
+    return a, b
 
 def similarity_matrix(ids, articles, output_file):
     '''
@@ -57,15 +69,28 @@ def similarity_matrix(ids, articles, output_file):
             article_id.append(id)
         all_sents += sents
 
-    for i, sent in enumerate(all_sents):
-        print("Batch " + str(i + 1))
-        sentences1 = [sent] * len(all_sents)
-        sims = calculate_similarity(sentences1, all_sents)
+    all_sents_1 = []
+    all_sents_2 = all_sents * len(all_sents)
 
-        for j, s in enumerate(sims):
-            f.write(str(i) + "\t" + str(j) + "\t" + sentences1[j] + "\t" + all_sents[j] + "\t" + str(s*len(all_sents)) + "\n")
+    for sent in all_sents:
+        all_sents_1 += [sent] * len(all_sents)
+
+    sims = calculate_similarity(all_sents_1, all_sents_2)
+
+    for i, s in enumerate(sims):
+        a, b = get_sentence_ids(i, len(all_sents))
+        f.write(str(a) + "\t" + str(b) + "\t" + all_sents_1[i] + "\t" + all_sents_2[i] + "\t" + str(s*len(all_sents_2)) + "\n")
+        #f.write(str(a) + "\t" + str(b) + "\t" + all_sents[a] + "\t" + all_sents[b] + "\t" + str(s*len(all_sents_2)) + "\n")
+
+    #for i, sent in enumerate(all_sents):
+    #    print("Batch " + str(i + 1))
+    #    sentences1 = [sent] * len(all_sents)
+    #    sims = calculate_similarity(sentences1, all_sents)
+    #    for j, s in enumerate(sims):
+    #        f.write(str(i) + "\t" + str(j) + "\t" + sentences1[j] + "\t" + all_sents[j] + "\t" + str(s*len(all_sents)) + "\n")
 
     f.close()
+
 
 if __name__ == '__main__':
 
@@ -78,7 +103,7 @@ if __name__ == '__main__':
                         required=False)
     parser.add_argument('--output',
                         '-o',
-                        default='../Results/similarity_matrix.tsv',
+                        default='../Results/similarity_matrix_top5.tsv',
                         help="Output file",
                         required=False)
     parser.add_argument('--topic',
