@@ -55,8 +55,8 @@ def get_CB_thesholded_article(text, threshold):
     for sentence in scored_article:
         if float(sentence.get('score')) > threshold:
             out += sentence.get('text')
-        else:
-            print(sentence.get('text'))
+        # else:
+            # print(sentence.get('text'))
     return out
 
 def get_CB_thesholded_article_top(text, amount_sentences):
@@ -117,9 +117,9 @@ def score_summaries():
             f.write("%s %f\r\n" % (filename, score))
     f.close()
 
-# basic use
-item = dataIO.readSummary(2, 'Results/summaries.tsv')
+# # basic use
+# item = dataIO.readSummary(2, 'Results/summaries.tsv')
 
-# print item.get('article')
-text = item.get('article')
-#print(get_CB_score(text))
+# # print item.get('article')
+# text = item.get('article')
+# print(get_CB_score(text))

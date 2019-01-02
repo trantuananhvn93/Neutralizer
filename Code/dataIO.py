@@ -6,20 +6,21 @@ def readData(id, filepath):
     dirname = os.path.dirname(os.path.abspath(__file__))
     dataPath = os.path.join(dirname, '../')
     dataPath = os.path.join(dataPath, filepath)
-    print(dataPath)
+    print('%s %d' % (dataPath, id))
     d = {'id': [], 'topic': '', 'title': '', 'publication': '', 'url': '', 'article': ''}
     with open(dataPath) as data:
         for i, line in enumerate(data):
             if i == id:
                 tsplit = line.split("\t")
-                d = {'id': tsplit[0], 'topic': tsplit[1], 'title': tsplit[2], 'publication': tsplit[3], 'url': tsplit[4], 'article': tsplit[5]}
+                d = {'article_id': tsplit[0], 'topic_id': tsplit[1], 'topic': tsplit[2], 'title': tsplit[3], 'publication': tsplit[4], 'url': tsplit[5], 'article': tsplit[6]}
     return d
+    
 
 def readSummary(id, filepath):
     dirname = os.path.dirname(os.path.abspath(__file__))
     dataPath = os.path.join(dirname, '../')
     dataPath = os.path.join(dataPath, filepath)
-    print(dataPath)
+    print('%s %d' % (dataPath, id))
     d = {'id': [], 'article': ''}
     with open(dataPath) as data:
         for i, line in enumerate(data):
