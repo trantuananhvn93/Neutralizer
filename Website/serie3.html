@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">        -->
+    <!--- Google fonts --->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500i,600,600i,700,700i,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500i,600,600i,700,700i,800,900" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!-- Fontawesome  -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- d3js graph style -->
+    <script src="http://d3js.org/d3.v4.min.js" type="text/javascript"></script>
+    <script src="http://d3js.org/d3-selection-multi.v1.js"></script>
+    
+    
+</head>
+<!--- Body --->
+<body>
+    <!--- Header --->
+    <header class="header">
+        <div class="header-overlay">
+            <div class="container">
+                <div class="header-text">
+                    <h1>Knowledge and the web project: <strong>Neutralizer</strong></h1>
+                    <p><u>Authors:</u> DAUDIER Chloé, .....</p>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+<!-- Url Table -->
+<container>
+    <div class="container">
+        <img src="images/articles3.PNG" alt="Synagogue shooting" class="center-block">
+    </div>
+</container>
+<!-- Graph -->
+<body>
+    <div class="container">
+        <div class="section-graph">
+            <svg class="graph-svg" viewBox="200 0 400 500">
+            <script type="text/javascript">
+               var graph = {
+                nodes:[
+                {"id": "Myriel", "radius": 1, "group" : 1},
+                {"id": "Napoleon", "radius": 1, "group" : 1},
+                {"id": "Mlle.Baptistine", "radius": 1, "group" : 1},
+                {"id": "Mme.Magloire", "radius": 1, "group" : 1},
+                {"id": "CountessdeLo", "radius": 1, "group" : 1},
+                {"id": "Geborand", "radius": 1, "group" : 1},
+                {"id": "Champtercier", "radius": 1, "group" : 1},
+                {"id": "Cravatte", "radius": 1, "group" : 1},
+                {"id": "Count", "radius": 1, "group" : 1},
+                {"id": "OldMan", "radius": 1, "group" : 1},
+                {"id": "Labarre", "radius": 2, "group" : 2},
+                {"id": "Valjean", "radius": 2, "group" : 2},
+                {"id": "Marguerite", "radius": 3, "group" : 3},
+                {"id": "Mme.deR", "radius": 2, "group" : 2},
+                {"id": "Isabeau", "radius": 2, "group" : 2},
+                {"id": "Gervais", "radius": 2, "group" : 2},
+                {"id": "Tholomyes", "radius": 3, "group" : 3},
+                {"id": "Listolier", "radius": 3, "group" : 3},
+                {"id": "Fameuil", "radius": 3, "group" : 3},
+                {"id": "Blacheville", "radius": 3, "group" : 3},
+                {"id": "Favourite", "radius": 3, "group" : 3},
+                {"id": "Dahlia", "radius": 3, "group" : 3},
+                {"id": "Zephine", "radius": 3, "group" : 3},
+                {"id": "Fantine", "radius": 3, "group" : 3},
+//                {"id": "Mme.Thenardier", "radius": 4, "group" : 4},
+//                {"id": "Thenardier", "radius": 4, "group" : 4},
+//                {"id": "Cosette", "radius": 5, "group" : 5},
+//                {"id": "Javert", "radius": 4, "group" : 4},
+//                {"id": "Fauchelevent", "radius": 0, "group" : 0},
+//                {"id": "Bamatabois", "radius": 2, "group" : 2},
+//                {"id": "Perpetue", "radius": 3, "group" : 3},
+//                {"id": "Simplice", "radius": 2, "group" : 2},
+//                {"id": "Scaufflaire", "radius": 2, "group" : 2},
+//                {"id": "Woman1", "radius": 2, "group" : 2},
+//                {"id": "Judge", "radius": 2, "group" : 2},
+//                {"id": "Champmathieu", "radius": 2, "group" : 2},
+//                {"id": "Brevet", "radius": 2, "group" : 2},
+//                {"id": "Chenildieu", "radius": 2, "group" : 2},
+//                {"id": "Cochepaille", "radius": 2, "group" : 2},
+//                {"id": "Pontmercy", "radius": 4, "group" : 4},
+//                {"id": "Boulatruelle", "radius": 6, "group" : 6},
+//                {"id": "Eponine", "radius": 4, "group" : 4},
+//                {"id": "Anzelma", "radius": 4, "group" : 4},
+//                {"id": "Woman2", "radius": 5, "group" : 5},
+//                {"id": "MotherInnocent", "radius": 0, "group" : 0},
+//                {"id": "Gribier", "radius": 0, "group" : 0},
+//                {"id": "Jondrette", "radius": 7, "group" : 7},
+//                {"id": "Mme.Burgon", "radius": 7, "group" : 7},
+//                {"id": "Gavroche", "radius": 8, "group" : 8},
+//                {"id": "Gillenormand", "radius": 5, "group" : 5},
+//                {"id": "Magnon", "radius": 5, "group" : 5},
+//                {"id": "Mlle.Gillenormand", "radius": 5, "group" : 5},
+//                {"id": "Mme.Pontmercy", "radius": 5, "group" : 5},
+//                {"id": "Mlle.Vaubois", "radius": 5, "group" : 5},
+//                {"id": "Lt.Gillenormand", "radius": 5, "group" : 5},
+//                {"id": "Marius", "radius": 8, "group" : 8},
+//                {"id": "BaronessT", "radius": 5, "group" : 5},
+//                {"id": "Mabeuf", "radius": 8, "group" : 8},
+//                {"id": "Enjolras", "radius": 8, "group" : 8},
+//                {"id": "Combeferre", "radius": 8, "group" : 8},
+//                {"id": "Prouvaire", "radius": 8, "group" : 8},
+//                {"id": "Feuilly", "radius": 8, "group" : 8},
+//                {"id": "Courfeyrac", "radius": 8, "group" : 8},
+//                {"id": "Bahorel", "radius": 8, "group" : 8},
+//                {"id": "Bossuet", "radius": 8, "group" : 8},
+//                {"id": "Joly", "radius": 8, "group" : 8},
+//                {"id": "Grantaire", "radius": 8, "group" : 8},
+//                {"id": "MotherPlutarch", "radius": 9, "group" : 9},
+//                {"id": "Gueulemer", "radius": 4, "group" : 4},
+//                {"id": "Babet", "radius": 4, "group" : 4},
+//                {"id": "Claquesous", "radius": 4, "group" : 4},
+//                {"id": "Montparnasse", "radius": 4, "group" : 4},
+//                {"id": "Toussaint", "radius": 5, "group" : 5},
+//                {"id": "Child1", "radius": 10, "group" : 10},
+//                {"id": "Child2", "radius": 10, "group" : 10},
+//                {"id": "Brujon", "radius": 4, "group" : 4},
+//                {"id": "Mme.Hucheloup", "radius": 8, "group" : 8}
+                ],
+                links :
+                [{"source": "Napoleon", "target": "Myriel", "radius": 1},
+                {"source": "Mlle.Baptistine", "target": "Myriel", "radius": 8},
+                {"source": "Mme.Magloire", "target": "Myriel", "radius": 10},
+                {"source": "Mme.Magloire", "target": "Mlle.Baptistine", "radius": 6},
+                {"source": "CountessdeLo", "target": "Myriel", "radius": 1},
+                {"source": "Geborand", "target": "Myriel", "radius": 1},
+                {"source": "Champtercier", "target": "Myriel", "radius": 1},
+                {"source": "Cravatte", "target": "Myriel", "radius": 1},
+                {"source": "Count", "target": "Myriel", "radius": 2},
+                {"source": "OldMan", "target": "Myriel", "radius": 1},
+                {"source": "Valjean", "target": "Labarre", "radius": 1},
+                {"source": "Valjean", "target": "Mme.Magloire", "radius": 3},
+                {"source": "Valjean", "target": "Mlle.Baptistine", "radius": 3},
+                {"source": "Valjean", "target": "Myriel", "radius": 5},
+                {"source": "Marguerite", "target": "Valjean", "radius": 1},
+                {"source": "Mme.deR", "target": "Valjean", "radius": 1},
+                {"source": "Isabeau", "target": "Valjean", "radius": 1},
+                {"source": "Gervais", "target": "Valjean", "radius": 1},
+                {"source": "Listolier", "target": "Tholomyes", "radius": 4},
+                {"source": "Fameuil", "target": "Tholomyes", "radius": 4},
+                {"source": "Fameuil", "target": "Listolier", "radius": 4},
+                {"source": "Blacheville", "target": "Tholomyes", "radius": 4},
+                {"source": "Blacheville", "target": "Listolier", "radius": 4},
+                {"source": "Blacheville", "target": "Fameuil", "radius": 4},
+                {"source": "Favourite", "target": "Tholomyes", "radius": 3},
+                {"source": "Favourite", "target": "Listolier", "radius": 3},
+                {"source": "Favourite", "target": "Fameuil", "radius": 3},
+                {"source": "Favourite", "target": "Blacheville", "radius": 4},
+                {"source": "Dahlia", "target": "Tholomyes", "radius": 3},
+                {"source": "Dahlia", "target": "Listolier", "radius": 3},
+                {"source": "Dahlia", "target": "Fameuil", "radius": 3},
+                {"source": "Dahlia", "target": "Blacheville", "radius": 3},
+                {"source": "Dahlia", "target": "Favourite", "radius": 5},
+                {"source": "Zephine", "target": "Tholomyes", "radius": 3},
+                {"source": "Zephine", "target": "Listolier", "radius": 3},
+                {"source": "Zephine", "target": "Fameuil", "radius": 3},
+                {"source": "Zephine", "target": "Blacheville", "radius": 3},
+                {"source": "Zephine", "target": "Favourite", "radius": 4},
+                {"source": "Zephine", "target": "Dahlia", "radius": 4},
+                {"source": "Fantine", "target": "Tholomyes", "radius": 3},
+                {"source": "Fantine", "target": "Listolier", "radius": 3},
+                {"source": "Fantine", "target": "Fameuil", "radius": 3},
+                {"source": "Fantine", "target": "Blacheville", "radius": 3},
+                {"source": "Fantine", "target": "Favourite", "radius": 4},
+                {"source": "Fantine", "target": "Dahlia", "radius": 4},
+                {"source": "Fantine", "target": "Zephine", "radius": 4},
+                {"source": "Fantine", "target": "Marguerite", "radius": 2},
+//                {"source": "Fantine", "target": "Valjean", "radius": 9},
+//                {"source": "Mme.Thenardier", "target": "Fantine", "radius": 2},
+//                {"source": "Mme.Thenardier", "target": "Valjean", "radius": 7},
+//                {"source": "Thenardier", "target": "Mme.Thenardier", "radius": 13},
+//                {"source": "Thenardier", "target": "Fantine", "radius": 1},
+//                {"source": "Thenardier", "target": "Valjean", "radius": 12},
+//                {"source": "Cosette", "target": "Mme.Thenardier", "radius": 4},
+//                {"source": "Cosette", "target": "Valjean", "radius": 31},
+//                {"source": "Cosette", "target": "Tholomyes", "radius": 1},
+//                {"source": "Cosette", "target": "Thenardier", "radius": 1},
+//                {"source": "Javert", "target": "Valjean", "radius": 17},
+//                {"source": "Javert", "target": "Fantine", "radius": 5},
+//                {"source": "Javert", "target": "Thenardier", "radius": 5},
+//                {"source": "Javert", "target": "Mme.Thenardier", "radius": 1},
+//                {"source": "Javert", "target": "Cosette", "radius": 1},
+//                {"source": "Fauchelevent", "target": "Valjean", "radius": 8},
+//                {"source": "Fauchelevent", "target": "Javert", "radius": 1},
+//                {"source": "Bamatabois", "target": "Fantine", "radius": 1},
+//                {"source": "Bamatabois", "target": "Javert", "radius": 1},
+//                {"source": "Bamatabois", "target": "Valjean", "radius": 2},
+//                {"source": "Perpetue", "target": "Fantine", "radius": 1},
+//                {"source": "Simplice", "target": "Perpetue", "radius": 2},
+//                {"source": "Simplice", "target": "Valjean", "radius": 3},
+//                {"source": "Simplice", "target": "Fantine", "radius": 2},
+//                {"source": "Simplice", "target": "Javert", "radius": 1},
+//                {"source": "Scaufflaire", "target": "Valjean", "radius": 1},
+//                {"source": "Woman1", "target": "Valjean", "radius": 2},
+//                {"source": "Woman1", "target": "Javert", "radius": 1},
+//                {"source": "Judge", "target": "Valjean", "radius": 3},
+//                {"source": "Judge", "target": "Bamatabois", "radius": 2},
+//                {"source": "Champmathieu", "target": "Valjean", "radius": 3},
+//                {"source": "Champmathieu", "target": "Judge", "radius": 3},
+//                {"source": "Champmathieu", "target": "Bamatabois", "radius": 2},
+//                {"source": "Brevet", "target": "Judge", "radius": 2},
+//                {"source": "Brevet", "target": "Champmathieu", "radius": 2},
+//                {"source": "Brevet", "target": "Valjean", "radius": 2},
+//                {"source": "Brevet", "target": "Bamatabois", "radius": 1},
+//                {"source": "Chenildieu", "target": "Judge", "radius": 2},
+//                {"source": "Chenildieu", "target": "Champmathieu", "radius": 2},
+//                {"source": "Chenildieu", "target": "Brevet", "radius": 2},
+//                {"source": "Chenildieu", "target": "Valjean", "radius": 2},
+//                {"source": "Chenildieu", "target": "Bamatabois", "radius": 1},
+//                {"source": "Cochepaille", "target": "Judge", "radius": 2},
+//                {"source": "Cochepaille", "target": "Champmathieu", "radius": 2},
+//                {"source": "Cochepaille", "target": "Brevet", "radius": 2},
+//                {"source": "Cochepaille", "target": "Chenildieu", "radius": 2},
+//                {"source": "Cochepaille", "target": "Valjean", "radius": 2},
+//                {"source": "Cochepaille", "target": "Bamatabois", "radius": 1},
+//                {"source": "Pontmercy", "target": "Thenardier", "radius": 1},
+//                {"source": "Boulatruelle", "target": "Thenardier", "radius": 1},
+//                {"source": "Eponine", "target": "Mme.Thenardier", "radius": 2},
+//                {"source": "Eponine", "target": "Thenardier", "radius": 3},
+//                {"source": "Anzelma", "target": "Eponine", "radius": 2},
+//                {"source": "Anzelma", "target": "Thenardier", "radius": 2},
+//                {"source": "Anzelma", "target": "Mme.Thenardier", "radius": 1},
+//                {"source": "Woman2", "target": "Valjean", "radius": 3},
+//                {"source": "Woman2", "target": "Cosette", "radius": 1},
+//                {"source": "Woman2", "target": "Javert", "radius": 1},
+//                {"source": "MotherInnocent", "target": "Fauchelevent", "radius": 3},
+//                {"source": "MotherInnocent", "target": "Valjean", "radius": 1},
+//                {"source": "Gribier", "target": "Fauchelevent", "radius": 2},
+//                {"source": "Mme.Burgon", "target": "Jondrette", "radius": 1},
+//                {"source": "Gavroche", "target": "Mme.Burgon", "radius": 2},
+//                {"source": "Gavroche", "target": "Thenardier", "radius": 1},
+//                {"source": "Gavroche", "target": "Javert", "radius": 1},
+//                {"source": "Gavroche", "target": "Valjean", "radius": 1},
+//                {"source": "Gillenormand", "target": "Cosette", "radius": 3},
+//                {"source": "Gillenormand", "target": "Valjean", "radius": 2},
+//                {"source": "Magnon", "target": "Gillenormand", "radius": 1},
+//                {"source": "Magnon", "target": "Mme.Thenardier", "radius": 1},
+//                {"source": "Mlle.Gillenormand", "target": "Gillenormand", "radius": 9},
+//                {"source": "Mlle.Gillenormand", "target": "Cosette", "radius": 2},
+//                {"source": "Mlle.Gillenormand", "target": "Valjean", "radius": 2},
+//                {"source": "Mme.Pontmercy", "target": "Mlle.Gillenormand", "radius": 1},
+//                {"source": "Mme.Pontmercy", "target": "Pontmercy", "radius": 1},
+//                {"source": "Mlle.Vaubois", "target": "Mlle.Gillenormand", "radius": 1},
+//                {"source": "Lt.Gillenormand", "target": "Mlle.Gillenormand", "radius": 2},
+//                {"source": "Lt.Gillenormand", "target": "Gillenormand", "radius": 1},
+//                {"source": "Lt.Gillenormand", "target": "Cosette", "radius": 1},
+//                {"source": "Marius", "target": "Mlle.Gillenormand", "radius": 6},
+//                {"source": "Marius", "target": "Gillenormand", "radius": 12},
+//                {"source": "Marius", "target": "Pontmercy", "radius": 1},
+//                {"source": "Marius", "target": "Lt.Gillenormand", "radius": 1},
+//                {"source": "Marius", "target": "Cosette", "radius": 21},
+//                {"source": "Marius", "target": "Valjean", "radius": 19},
+//                {"source": "Marius", "target": "Tholomyes", "radius": 1},
+//                {"source": "Marius", "target": "Thenardier", "radius": 2},
+//                {"source": "Marius", "target": "Eponine", "radius": 5},
+//                {"source": "Marius", "target": "Gavroche", "radius": 4},
+//                {"source": "BaronessT", "target": "Gillenormand", "radius": 1},
+//                {"source": "BaronessT", "target": "Marius", "radius": 1},
+//                {"source": "Mabeuf", "target": "Marius", "radius": 1},
+//                {"source": "Mabeuf", "target": "Eponine", "radius": 1},
+//                {"source": "Mabeuf", "target": "Gavroche", "radius": 1},
+//                {"source": "Enjolras", "target": "Marius", "radius": 7},
+//                {"source": "Enjolras", "target": "Gavroche", "radius": 7},
+//                {"source": "Enjolras", "target": "Javert", "radius": 6},
+//                {"source": "Enjolras", "target": "Mabeuf", "radius": 1},
+//                {"source": "Enjolras", "target": "Valjean", "radius": 4},
+//                {"source": "Combeferre", "target": "Enjolras", "radius": 15},
+//                {"source": "Combeferre", "target": "Marius", "radius": 5},
+//                {"source": "Combeferre", "target": "Gavroche", "radius": 6},
+//                {"source": "Combeferre", "target": "Mabeuf", "radius": 2},
+//                {"source": "Prouvaire", "target": "Gavroche", "radius": 1},
+//                {"source": "Prouvaire", "target": "Enjolras", "radius": 4},
+//                {"source": "Prouvaire", "target": "Combeferre", "radius": 2},
+//                {"source": "Feuilly", "target": "Gavroche", "radius": 2},
+//                {"source": "Feuilly", "target": "Enjolras", "radius": 6},
+//                {"source": "Feuilly", "target": "Prouvaire", "radius": 2},
+//                {"source": "Feuilly", "target": "Combeferre", "radius": 5},
+//                {"source": "Feuilly", "target": "Mabeuf", "radius": 1},
+//                {"source": "Feuilly", "target": "Marius", "radius": 1},
+//                {"source": "Courfeyrac", "target": "Marius", "radius": 9},
+//                {"source": "Courfeyrac", "target": "Enjolras", "radius": 17},
+//                {"source": "Courfeyrac", "target": "Combeferre", "radius": 13},
+//                {"source": "Courfeyrac", "target": "Gavroche", "radius": 7},
+//                {"source": "Courfeyrac", "target": "Mabeuf", "radius": 2},
+//                {"source": "Courfeyrac", "target": "Eponine", "radius": 1},
+//                {"source": "Courfeyrac", "target": "Feuilly", "radius": 6},
+//                {"source": "Courfeyrac", "target": "Prouvaire", "radius": 3},
+//                {"source": "Bahorel", "target": "Combeferre", "radius": 5},
+//                {"source": "Bahorel", "target": "Gavroche", "radius": 5},
+//                {"source": "Bahorel", "target": "Courfeyrac", "radius": 6},
+//                {"source": "Bahorel", "target": "Mabeuf", "radius": 2},
+//                {"source": "Bahorel", "target": "Enjolras", "radius": 4},
+//                {"source": "Bahorel", "target": "Feuilly", "radius": 3},
+//                {"source": "Bahorel", "target": "Prouvaire", "radius": 2},
+//                {"source": "Bahorel", "target": "Marius", "radius": 1},
+//                {"source": "Bossuet", "target": "Marius", "radius": 5},
+//                {"source": "Bossuet", "target": "Courfeyrac", "radius": 12},
+//                {"source": "Bossuet", "target": "Gavroche", "radius": 5},
+//                {"source": "Bossuet", "target": "Bahorel", "radius": 4},
+//                {"source": "Bossuet", "target": "Enjolras", "radius": 10},
+//                {"source": "Bossuet", "target": "Feuilly", "radius": 6},
+//                {"source": "Bossuet", "target": "Prouvaire", "radius": 2},
+//                {"source": "Bossuet", "target": "Combeferre", "radius": 9},
+//                {"source": "Bossuet", "target": "Mabeuf", "radius": 1},
+//                {"source": "Bossuet", "target": "Valjean", "radius": 1},
+//                {"source": "Joly", "target": "Bahorel", "radius": 5},
+//                {"source": "Joly", "target": "Bossuet", "radius": 7},
+//                {"source": "Joly", "target": "Gavroche", "radius": 3},
+//                {"source": "Joly", "target": "Courfeyrac", "radius": 5},
+//                {"source": "Joly", "target": "Enjolras", "radius": 5},
+//                {"source": "Joly", "target": "Feuilly", "radius": 5},
+//                {"source": "Joly", "target": "Prouvaire", "radius": 2},
+//                {"source": "Joly", "target": "Combeferre", "radius": 5},
+//                {"source": "Joly", "target": "Mabeuf", "radius": 1},
+//                {"source": "Joly", "target": "Marius", "radius": 2},
+//                {"source": "Grantaire", "target": "Bossuet", "radius": 3},
+//                {"source": "Grantaire", "target": "Enjolras", "radius": 3},
+//                {"source": "Grantaire", "target": "Combeferre", "radius": 1},
+//                {"source": "Grantaire", "target": "Courfeyrac", "radius": 2},
+//                {"source": "Grantaire", "target": "Joly", "radius": 2},
+//                {"source": "Grantaire", "target": "Gavroche", "radius": 1},
+//                {"source": "Grantaire", "target": "Bahorel", "radius": 1},
+//                {"source": "Grantaire", "target": "Feuilly", "radius": 1},
+//                {"source": "Grantaire", "target": "Prouvaire", "radius": 1},
+//                {"source": "MotherPlutarch", "target": "Mabeuf", "radius": 3},
+//                {"source": "Gueulemer", "target": "Thenardier", "radius": 5},
+//                {"source": "Gueulemer", "target": "Valjean", "radius": 1},
+//                {"source": "Gueulemer", "target": "Mme.Thenardier", "radius": 1},
+//                {"source": "Gueulemer", "target": "Javert", "radius": 1},
+//                {"source": "Gueulemer", "target": "Gavroche", "radius": 1},
+//                {"source": "Gueulemer", "target": "Eponine", "radius": 1},
+//                {"source": "Babet", "target": "Thenardier", "radius": 6},
+//                {"source": "Babet", "target": "Gueulemer", "radius": 6},
+//                {"source": "Babet", "target": "Valjean", "radius": 1},
+//                {"source": "Babet", "target": "Mme.Thenardier", "radius": 1},
+//                {"source": "Babet", "target": "Javert", "radius": 2},
+//                {"source": "Babet", "target": "Gavroche", "radius": 1},
+//                {"source": "Babet", "target": "Eponine", "radius": 1},
+//                {"source": "Claquesous", "target": "Thenardier", "radius": 4},
+//                {"source": "Claquesous", "target": "Babet", "radius": 4},
+//                {"source": "Claquesous", "target": "Gueulemer", "radius": 4},
+//                {"source": "Claquesous", "target": "Valjean", "radius": 1},
+//                {"source": "Claquesous", "target": "Mme.Thenardier", "radius": 1},
+//                {"source": "Claquesous", "target": "Javert", "radius": 1},
+//                {"source": "Claquesous", "target": "Eponine", "radius": 1},
+//                {"source": "Claquesous", "target": "Enjolras", "radius": 1},
+//                {"source": "Montparnasse", "target": "Javert", "radius": 1},
+//                {"source": "Montparnasse", "target": "Babet", "radius": 2},
+//                {"source": "Montparnasse", "target": "Gueulemer", "radius": 2},
+//                {"source": "Montparnasse", "target": "Claquesous", "radius": 2},
+//                {"source": "Montparnasse", "target": "Valjean", "radius": 1},
+//                {"source": "Montparnasse", "target": "Gavroche", "radius": 1},
+//                {"source": "Montparnasse", "target": "Eponine", "radius": 1},
+//                {"source": "Montparnasse", "target": "Thenardier", "radius": 1},
+//                {"source": "Toussaint", "target": "Cosette", "radius": 2},
+//                {"source": "Toussaint", "target": "Javert", "radius": 1},
+//                {"source": "Toussaint", "target": "Valjean", "radius": 1},
+//                {"source": "Child1", "target": "Gavroche", "radius": 2},
+//                {"source": "Child2", "target": "Gavroche", "radius": 2},
+//                {"source": "Child2", "target": "Child1", "radius": 3},
+//                {"source": "Brujon", "target": "Babet", "radius": 3},
+//                {"source": "Brujon", "target": "Gueulemer", "radius": 3},
+//                {"source": "Brujon", "target": "Thenardier", "radius": 3},
+//                {"source": "Brujon", "target": "Gavroche", "radius": 1},
+//                {"source": "Brujon", "target": "Eponine", "radius": 1},
+//                {"source": "Brujon", "target": "Claquesous", "radius": 1},
+//                {"source": "Brujon", "target": "Montparnasse", "radius": 1},
+//                {"source": "Mme.Hucheloup", "target": "Bossuet", "radius": 1},
+//                {"source": "Mme.Hucheloup", "target": "Joly", "radius": 1},
+//                {"source": "Mme.Hucheloup", "target": "Grantaire", "radius": 1},
+//                {"source": "Mme.Hucheloup", "target": "Bahorel", "radius": 1},
+//                {"source": "Mme.Hucheloup", "target": "Courfeyrac", "radius": 1},
+//                {"source": "Mme.Hucheloup", "target": "Gavroche", "radius": 1},
+//                {"source": "Mme.Hucheloup", "target": "Enjolras", "radius": 1}
+                ]
+}
+                
+                
+                var width = 800,
+                    height = 500,
+                    radius = 6;
+                
+                var colors = d3.scaleOrdinal(d3.schemeCategory10);
+                
+                var svg = d3.select("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+                 //Draw the Rectangle
+                var rectangle = svg.append("line")
+                    .attr("x1", 0)
+                    .attr("y1", 0)
+                    .attr("x2", 0)
+                    .attr("y2", height)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", 0)
+                    .attr("y1", height)
+                    .attr("x2", width)
+                    .attr("y2", height)
+                    .attr("stroke-width", 4)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", width)
+                    .attr("y1", height)
+                    .attr("x2", width)
+                    .attr("y2", 0)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", width)
+                    .attr("y1", 0)
+                    .attr("x2", 0)
+                    .attr("y2", 0)
+                    .attr("stroke-width", 4)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );                 
+                ;                 
+                var areaPath = svg.append("path")
+                    .attr("clip-path", "url(#clip)")
+                    .attr("fill", "steelblue");
+                /*    d3.json("graph.json", function (error, graph) {
+                    if (error) throw error;*/
+                find_radius(graph.links, graph.nodes);
+                var simulation = d3.forceSimulation()
+                    .force("link", d3.forceLink().id(function (d) {return d.id;}).distance(100).strength(1))
+//                    .force("collide",d3.forceCollide( function(d){return d.radius + 8 }).iterations(16) )   
+                    .force("charge", d3.forceManyBody().strength(-240))/*.strength(-250).distanceMin(150).distanceMax(150)*/
+                    .force("x", d3.forceX(width / 2).strength(.05))
+                    .force("y", d3.forceY(height / 2).strength(.05))
+//                    .force("center", d3.forceCenter(width / 2, height / 2));
+                update(graph.links, graph.nodes);
+                svg.append("clipPath")
+                    .attr("id", "clip")
+                  .append("rect")
+                    .attr("width", width)
+                    .attr("height", height);            
+                function find_radius(links, nodes) {
+                    for (var i = 0; i < nodes.length; i++) {
+                        var child = 5;
+                        for (var j = 0; j < links.length; j++) {
+                            if (links[j]["target"] == nodes[i]["id"]) child += 0.5 ;
+                            if (links[j]["source"] == nodes[i]["id"]) child += 0.1;}
+                        nodes[i]["radius"] = child;
+                        for (var j = 0; j < links.length; j++) {
+                            if (links[j]["target"] == nodes[i]["id"]) links[j]["radius"] = child;
+                            if (links[j]["source"] == nodes[i]["id"]) links[i]["radius"] = child;}
+                    }
+                }
+                function update(links, nodes) {
+                    link = svg.selectAll(".link")
+                        .data(links)
+                        .enter()
+                        .append("line")
+                        .attr("class", "link")
+                        .attr("marker-end", function(d) { return "url(#marker" + d.target + ")"})
+
+                    node = svg.selectAll(".node")
+                        .data(nodes)
+                        .enter()
+                        .append("g")
+                        .attr("class", "node")
+                        .on("mouseover", mouseover)
+                        .on("mouseout", mouseout)
+                        .call(d3.drag()
+                                .on("start", dragstarted)
+                                .on("drag", dragged)
+                                .on("end", dragended));
+                  
+                    defs = svg.append("defs").selectAll(".marker")
+                        .data(nodes)
+                        .enter()
+                        .append("marker")
+                        .attr("class", "marker")
+                        .attr("id", function(d) { return "marker" + d.id })
+                        .attr("viewBox", "0 -5 10 10")
+                        .attr("refX", function(d) { 
+                          return d.radius + 12;   
+                        })
+                        .attr("refY", 0)
+                        .attr("markerWidth", 6)                        
+                        .attr("markerHeight", 6)
+                        .attr("orient", "auto")
+                        .append("path")
+                            .attr("d", "M0,-5 L10,0 L0,5")
+                            .style("stroke", "black")
+                            .style("fill", "black")
+                            .style("opacity", "1");
+                    
+                    node.append("circle")
+                        .attr("r", function(d) {return d.radius;})
+                        .style("fill", function (d) {return colors(d.group);})
+                    node.append("text")
+                        .attr("dy", function (d) {return d.radius*-1;})
+                        .text(function (d) {return d.id;});      
+                    simulation
+                        .nodes(nodes)
+                        .on("tick", ticked)
+                    simulation.force("link")
+                        .links(links);
+                }
+                function ticked() {  
+                    node
+                        .attr("transform", function (d) {return "translate(" +(d.x) + ", " + (d.y) + ")";})
+                        .attr("cx", function(d) {
+                                return (d.x = Math.max(d.radius, Math.min(width - d.radius, d.x)));
+                        })
+                        .attr("cy", function(d) {
+                                return (d.y = Math.max(d.radius, Math.min(height - d.radius, d.y)));      
+                        });                    
+                    link
+                        .attr("x1", function (d) {return (d.source.x );})
+                        .attr("y1", function (d) {return (d.source.y );})
+                        .attr("x2", function (d) {return (d.target.x );})
+                        .attr("y2", function (d) {return (d.target.y );});               
+
+                }
+                function dragstarted(d) {
+                    if (!d3.event.active) simulation.alphaTarget(0.3).restart()
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+                function dragged(d) {
+                    d.fx = d3.event.x;
+                    d.fy = d3.event.y;
+                }
+                function dragended(d) {
+                  if (!d3.event.active) simulation.alphaTarget(0);
+                  d.fx = null;
+                  d.fy = null;
+                }                
+                function mouseover() {
+                  d3.select(this).select("circle").transition()
+                      .duration(750)
+                      .attr("r", function(d) {return d.radius+d.radius/2;});
+                }
+
+                function mouseout() {
+                  d3.select(this).select("circle").transition()
+                      .duration(750)
+                      .attr("r", function(d) {return d.radius;});
+                }                
+            </script>
+            </svg>
+        </div>
+    </div>
+</body>
+    
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="copyright">
+                    <p>Copyright &copy; 2018 -<a href="#"> aloé</a> </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="scroll-top">
+                    <a href="#"><i class="fa fa-angle-up"></i> </a>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>   
+
+</html>

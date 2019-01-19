@@ -1,0 +1,201 @@
+/* General CSS */
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Raleway', sans-serif;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+p{
+    font-size: 14px;
+}
+/* ******** d3 js graph CSS ******** */
+.node {}
+.link { 
+    stroke: #000; stroke-opacity: .6; stroke-width: 1.5px; 
+}
+/* ******** Generic CSS ******** */
+
+.section-title{
+    padding-top: 45px;
+    padding-bottom: 25px;
+    
+}
+
+.section-title h2 {
+    position: relative;
+    text-align: center;
+    color: #333;
+    font-size: 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.section-title h2:after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    width: 60px;
+    height: 1px;
+    background-color: #129CF3;
+    margin-left: -30px;
+}
+.section-title p {
+    color: #333;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 45px;    
+}
+
+.container {
+    padding-top: 10px;
+    padding-bottom: 25px; 
+}
+/* ******** HEADER ******** */
+.header {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+}
+.header-overlay {
+    background-color: rgba(31, 31, 31, 0.75);
+}
+
+.logo {
+    padding-bottom: 5px;
+}
+
+.header-text h1 {
+    color: #fff;
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 45px;
+    padding-top: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.header-text p {
+    color: #fff;
+    font-size: 17px;
+    line-height: 28px;
+    font-weight: 300;
+}
+
+/* ********* Articles table ********* */
+.article {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    /*background-position: 0% 0%;*/
+}
+table {
+width: 100%;
+}		
+
+table.one {									 
+margin-bottom: 3em;	
+border-collapse:collapse;	
+}	
+
+td {							
+text-align: center;     
+width: 5em;					
+padding: 0.5em; 		
+}		
+
+th {							  
+text-align: center;					
+padding: 1em;
+background-color: #129CF3;	     
+color: white;	
+width: 33%;
+}			      
+
+tr {	
+height: 1em;	
+}
+
+table tr:nth-child(even) {		      
+       background-color: #eee;		
+}
+
+table tr:nth-child(odd) {		     
+background-color:#fff;		
+}
+
+/* ********* Graph section ********* */
+.section-graph {
+    position: relative; 
+    height:800; 
+    width: 100%; 
+    padding: 0;
+    padding-bottom: 50%;     
+}
+
+.graph-svg {
+    position: absolute; 
+    height: 100%; 
+    width: 100%; 
+    left: 0; 
+    top:0;
+}
+
+
+/* ********* Footer ********* */
+
+.footer {
+/*    background-color: #1a1a1a;*/
+    background-color: rgba(31, 31, 31, 0.75);
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-bottom: 3px solid #129CF3;
+}
+
+#copyright {
+    width: 50%;
+}
+
+#copyright p {
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+#copyright p a {
+    text-decoration: none;
+    color: #129CF3;
+}
+
+.scroll-top {
+    text-align: right;
+}
+
+.scroll-top a {
+    background-color: #129CF3;
+    padding: 25px;
+}
+
+
+.scroll-top a i {
+    color: #fff;
+    font-size: 25px;
+}
+
+
+
+
+
