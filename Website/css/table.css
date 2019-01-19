@@ -1,0 +1,20 @@
+
+
+    .table-container {
+        overflow-x: auto; 
+
+      }
+    .td-container thead th{
+        min-width:500px; 
+        margin:20px;
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        
+      }
+      .td-container thead td{
+        min-width:500px; 
+        padding:20px;
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        
+      }
