@@ -9,7 +9,7 @@ def read_articles(file):
     df = pd.DataFrame(columns=['article_id','topic_id','topic','title', 'publication', 'url', 'article'])
     
     d = {'article_id': '', 'topic_id': '', 'topic': '', 'title': '', 'publication': '', 'url': '', 'article': ''}
-    with open(input_path) as data:
+    with open(file) as data:
         for i, line in enumerate(data):
             if i>0:
                 tsplit = line.split("\t")
