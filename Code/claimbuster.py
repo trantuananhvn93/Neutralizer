@@ -55,7 +55,7 @@ def get_CB_thesholded_article(text, threshold):
     out = ''
     for sentence in scored_article:
         if float(sentence.get('score')) > threshold:
-            out += sentence.get('text')
+            out += sentence.get('text') + ' '
         else:
             print(sentence.get('text'))
     return out
