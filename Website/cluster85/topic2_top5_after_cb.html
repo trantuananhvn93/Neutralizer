@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">        
+    <!--- Google fonts --->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500i,600,600i,700,700i,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500i,600,600i,700,700i,800,900" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/table.css">
+
+    <!-- Fontawesome  -->
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- d3js graph style -->
+    <script src="http://d3js.org/d3.v4.min.js" type="text/javascript"></script>
+    <script src="http://d3js.org/d3-selection-multi.v1.js"></script>
+    
+    <!-- Show clustering of articles   -->
+    <script src="../../Results/javascript/cluster85/cluster85/topic2_top5_after_cb.js" ></script>
+      
+    <!-- Graph with nodes and links   -->
+    <script type="text/javascript">
+        var graph = {
+            nodes: [
+            {'id': 'huffingtonpost', 'url': 'https://www.huffingtonpost.com/entry/florida-recount-rick-scott-bill-nelson_us_5be8b7f6e4b0769d24ceb6c9?guccounter=1', 'titre': 'null', 'radius': '1', 'group': '1'},
+            {'id': 'slate', 'url': 'https://slate.com/news-and-politics/2018/11/florida-election-recount-senate-governor-race-nelson-scott-desantis-gillum.html', 'titre': 'null', 'radius': '1', 'group': '1'},
+            {'id': 'dailykos', 'url': 'https://www.dailykos.com/stories/2018/11/10/1811855/-Andrew-Gillum-withdraws-his-concession-as-the-Florida-recount-is-officially-on-for-three-key-races', 'titre': 'null', 'radius': '1', 'group': '1'},
+            {'id': 'dailykos1', 'url': 'https://www.dailykos.com/stories/2018/11/10/1811796/-What-s-up-with-voter-recounts-in-Arizona-Georgia-and-Florida-Here-s-what-you-need-to-know', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'dailykos2', 'url': 'https://www.dailykos.com/story/2018/11/10/1811855/-Andrew-Gillum-withdraws-his-concession-as-the-Florida-recount-is-officially-on-for-three-key-races#comments', 'titre': 'null', 'radius': '1', 'group': '2'},
+            {'id': 'twitter', 'url': 'https://twitter.com/AndrewGillum/status/1061349905661394944?ref_src=twsrc%5Etfw', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter1', 'url': 'https://twitter.com/realDonaldTrump/status/1060924708101644288?ref_src=twsrc%5Etfw', 'titre': 'null', 'radius': '1', 'group': '2'},
+            {'id': 'dailykos3', 'url': 'https://www.dailykos.com/stories/2018/11/9/1811543/-Democrats-fight-on-in-Georgia-to-make-sure-all-votes-are-counted-Here-s-how-you-can-help', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter2', 'url': 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.dailykos.com%2Fstory%2F2018%2F11%2F10%2F1811855%2F-Andrew-Gillum-withdraws-his-concession-as-the-Florida-recount-is-officially-on-for-three-key-races&text=Andrew+Gillum+withdraws+his+concession+as+the+Florida+recount+is+officially+on+for+three+key+races', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'secure.actblue', 'url': 'https://secure.actblue.com/donate/dkendorsesflrecount?refcode=20181110tntmh1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes', 'url': 'https://www.nytimes.com/2018/11/10/us/florida-senate-governor-votes-recount.html', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'nytimes1', 'url': 'https://www.nytimes.com/2018/11/09/us/florida-ballots-recount-scott-nelson-gillum-desantis.html?module=inline', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes2', 'url': 'https://www.nytimes.com/2018/11/09/upshot/florida-senate-race-broward-undercount.html?module=inline', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes3', 'url': 'https://www.nytimes.com/2018/11/08/us/florida-recount-nelson-scott-desantis-gillum.html?action=click&module=RelatedCoverage&pgtype=Article&region=Footer', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter3', 'url': 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fnyti.ms%2F2z1BYwK&text=Florida%20Begins%20Vote%20Recounts%20in%20Senate%20and%20Governor%E2%80%99s%20Races', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes4', 'url': 'https://www.nytimes.com/2018/11/10/us/arizona-senate-sinema-mcsally-green-party.html?action=click&module=RelatedCoverage&pgtype=Article&region=Footer', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes5', 'url': 'https://www.nytimes.com/subscriptions/Multiproduct/lp8HYKU.html?campaignId=48JQY', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes6', 'url': 'https://www.nytimes.com/2018/11/09/us/florida-ballots-recount-scott-nelson-gillum-desantis.html?action=click&module=RelatedCoverage&pgtype=Article&region=Footer', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes7', 'url': 'https://www.nytimes.com/interactive/2018/11/10/us/elections/2018-possible-midterm-recounts-georgia-florida-arizona.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nytimes8', 'url': 'http://www.nytimes.com/pages/todayspaper/index.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc', 'url': 'https://www.bbc.com/news/world-us-canada-46166980', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'twitter4', 'url': 'https://twitter.com/marcorubio/status/1061304036987682816', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk', 'url': 'https://www.bbc.co.uk/news/world-europe-46165903', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk1', 'url': 'https://www.bbc.co.uk/faqs/questions/bbc_online/sharing', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk2', 'url': 'https://www.bbc.co.uk/news/world-us-canada-46120582', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter5', 'url': 'https://twitter.com/realDonaldTrump/status/1061335051294728194', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter6', 'url': 'https://twitter.com/intent/tweet?text=BBC%20News%20-%20Mid-term%20elections%202018%3A%20Recounts%20descend%20into%20rancour&url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-us-canada-46166980', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook', 'url': 'http://www.facebook.com/dialog/send?app_id=58567469885&redirect_uri=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-us-canada-46166980&link=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-us-canada-46166980%3FSThisFB&display=popup', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook1', 'url': 'http://www.facebook.com/dialog/feed?app_id=58567469885&redirect_uri=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-us-canada-46166980&link=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-us-canada-46166980%3FSThisFB&display=popup', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk3', 'url': 'https://www.bbc.co.uk/news/world-us-canada-46132670', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk4', 'url': 'https://www.bbc.co.uk/bbcthree/article/063dba1d-2ab2-40e3-9837-3d70481ef82c?intc_type=promo&intc_location=news&intc_campaign=whathappenstoyourbodyinheat_article&intc_linkname=bbcthree_yc_low_c3', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk5', 'url': 'https://www.bbc.co.uk/music/articles/d37a03cb-41e5-43c8-b88d-8e1f59fd9998?intc_type=promo&intc_location=news&intc_campaign=misheardlyrics_quiz&intc_linkname=bbcmusic_rm_low_c3', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'account.bbc', 'url': 'https://account.bbc.com/account?ptrt=https://www.bbc.com/news/world-us-canada-46166980', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter7', 'url': 'https://twitter.com/realDonaldTrump/status/1060938144336367616', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'ajc', 'url': 'https://www.ajc.com/blog/politics/georgia-election-weekend-clash-over-how-many-gov-votes-are-still-uncounted/dUpaJi6Yw9NXH8NxXcovbM/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'linkedin', 'url': 'https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-us-canada-46166980&title=Mid-term%20elections%202018%3A%20Recounts%20descend%20into%20rancour&summary=Officials%20say%20the%20margins%20in%20elections%20for%20state%20governor%20and%20senator%20have%20narrowed%20to%20within%200.5%25.&source=BBC', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk6', 'url': 'https://www.bbc.co.uk/news/contact-us/editorial', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk7', 'url': 'https://www.bbc.co.uk/news/world-us-canada-46076389', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'uk.pinterest', 'url': 'https://uk.pinterest.com/pin/create/bookmarklet/?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-us-canada-46166980&description=Officials%20say%20the%20margins%20in%20elections%20for%20state%20governor%20and%20senator%20have%20narrowed%20to%20within%200.5%25.&title=Mid-term%20elections%202018%3A%20Recounts%20descend%20into%20rancour&media=https%3A%2F%2Fwww.bbc.co.uk%2Fnews%2Fspecial%2F2015%2Fnewsspec_10857%2Fbbc_news_logo.png%3Fcb%3D1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bloomberg', 'url': 'https://www.bloomberg.com/news/articles/2018-11-10/florida-orders-statewide-recount-on-senate-governor-races', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'foxnews', 'url': 'https://www.foxnews.com/politics/rick-scott-insists-he-won-the-election-as-election-chaos-keeps-florida-georgia-and-arizona-races-in-suspense', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'foxnews1', 'url': 'https://www.foxnews.com/politics/floridas-secretary-of-state-orders-recounts-in-senate-gubernatorial-races', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'foxnews2', 'url': 'https://www.foxnews.com/politics/trump-delays-state-of-the-union-other-times-the-address-has-been-postponed-or-not-given-at-all', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'foxnews3', 'url': 'https://www.foxnews.com/politics/abrams-campaign-files-federal-lawsuit-in-hopes-to-force-runoff', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'foxnews4', 'url': 'https://www.foxnews.com/politics/dem-sen-joe-manchin-will-vote-yes-on-gop-and-democrat-proposals-to-end-shutdown', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'breitbart', 'url': 'https://www.breitbart.com/news/florida-orders-recount-in-senate-governor-races/', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'breitbart1', 'url': 'https://www.breitbart.com/news/florida-orders-recount-in-senate-governor-races/#disqus_thread', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost', 'url': 'https://nypost.com/2018/11/10/florida-orders-recount-for-governor-and-senate-races/', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'nypost1', 'url': 'https://nypost.com/2018/11/10/why-republicans-actually-have-the-upper-hand-after-the-midterms/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost2', 'url': 'https://nypost.com/2018/11/10/florida-orders-recount-for-governor-and-senate-races/?share=twitter', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost3', 'url': 'https://nypost.com/2018/11/10/florida-orders-recount-for-governor-and-senate-races/?share=email', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost4', 'url': 'https://nypost.com/2019/01/23/dustin-johnson-paulina-gretzky-party-with-golf-couple-who-is-not-shy-at-all/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'thenypost.files.wordpress', 'url': 'https://thenypost.files.wordpress.com/2018/11/181110-florida-recount.jpg?quality=90&strip=all&strip=all', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost5', 'url': 'https://nypost.com/2018/12/29/maine-governor-writes-stolen-election-while-certifying-democrats-victory/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost6', 'url': 'https://nypost.com/2018/11/10/florida-orders-recount-for-governor-and-senate-races/?share=facebook', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost7', 'url': 'https://nypost.com/2019/01/22/10-year-old-boy-bullied-over-colostomy-bag-kills-himself-cops/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost8', 'url': 'https://nypost.com/2019/01/14/dems-may-destroy-the-suburbs-they-won-and-other-commentary/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost9', 'url': 'https://nypost.com/author/mary-kay-linge/feed/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost10', 'url': 'https://nypost.com/2019/01/08/gop-candidate-dodges-reporters-to-watch-college-football-championship/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'nypost111', 'url': 'https://nypost.com/2019/01/18/dnc-says-it-was-targeted-by-cyber-attack-days-after-2018-miderms-court-docs/', 'titre': 'null', 'radius': '1', 'group': '2'}
+],
+            links: [
+            {'source': 'dailykos', 'target': 'dailykos1', 'radius': 1}, {'source': 'dailykos', 'target': 'dailykos2', 'radius': 1}, {'source': 'dailykos', 'target': 'twitter', 'radius': 1}, {'source': 'dailykos', 'target': 'twitter1', 'radius': 1}, {'source': 'dailykos', 'target': 'dailykos3', 'radius': 1}, {'source': 'dailykos', 'target': 'twitter2', 'radius': 1}, {'source': 'dailykos', 'target': 'secure.actblue', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes1', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes2', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes3', 'radius': 1}, {'source': 'nytimes', 'target': 'twitter3', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes4', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes5', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes6', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes7', 'radius': 1}, {'source': 'nytimes', 'target': 'nytimes8', 'radius': 1}, {'source': 'bbc', 'target': 'twitter4', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk1', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk2', 'radius': 1}, {'source': 'bbc', 'target': 'twitter5', 'radius': 1}, {'source': 'bbc', 'target': 'twitter6', 'radius': 1}, {'source': 'bbc', 'target': 'facebook', 'radius': 1}, {'source': 'bbc', 'target': 'facebook1', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk3', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk4', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk5', 'radius': 1}, {'source': 'bbc', 'target': 'account.bbc', 'radius': 1}, {'source': 'bbc', 'target': 'twitter7', 'radius': 1}, {'source': 'bbc', 'target': 'ajc', 'radius': 1}, {'source': 'bbc', 'target': 'linkedin', 'radius': 1}, {'source': 'bbc', 'target': 'bbc', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk6', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk7', 'radius': 1}, {'source': 'bbc', 'target': 'uk.pinterest', 'radius': 1}, {'source': 'foxnews', 'target': 'foxnews1', 'radius': 1}, {'source': 'foxnews', 'target': 'foxnews2', 'radius': 1}, {'source': 'foxnews', 'target': 'foxnews3', 'radius': 1}, {'source': 'foxnews', 'target': 'foxnews4', 'radius': 1}, {'source': 'breitbart', 'target': 'breitbart1', 'radius': 1}, {'source': 'nypost', 'target': 'twitter5', 'radius': 1}, {'source': 'nypost', 'target': 'nypost1', 'radius': 1}, {'source': 'nypost', 'target': 'nypost2', 'radius': 1}, {'source': 'nypost', 'target': 'nypost3', 'radius': 1}, {'source': 'nypost', 'target': 'nypost4', 'radius': 1}, {'source': 'nypost', 'target': 'thenypost.files.wordpress', 'radius': 1}, {'source': 'nypost', 'target': 'nypost5', 'radius': 1}, {'source': 'nypost', 'target': 'nypost6', 'radius': 1}, {'source': 'nypost', 'target': 'nypost7', 'radius': 1}, {'source': 'nypost', 'target': 'nypost8', 'radius': 1}, {'source': 'nypost', 'target': 'nypost9', 'radius': 1}, {'source': 'nypost', 'target': 'nypost10', 'radius': 1}, {'source': 'nypost', 'target': 'nypost111', 'radius': 1}, {'source': 'nypost', 'target': 'nypost', 'radius': 1}]
+            }
+
+            
+        var articles = {
+            id: ['BuzzFeed News', 'Vox', 'The Guardian', 'NPR', 'BBC News', 'The New York Times',
+                'Fox News', 'Daily Mail', 'New York Post'
+                ],
+            title: ['A Security Guard Who Stopped A Gunman At A Bar Was Shot And Killed By Responding Police',
+                      'A black security guard caught a shooting suspect - only to be shot by police minutes later',
+                      'Officer fatally shoots security guard who detained gunman at suburban Chicago bar',
+                      'Police Fatally Shoot Black Security Guard Who Detained Shooting Suspect',
+                      'Outcry after police shoot African-American security guard hero',
+                      'Black Security Guard Responding to Shooting Is Killed by Police',
+                      'Cop accidentally kills security guard at bar in Chicago suburbs: report',
+                      'Lawsuit alleges security guard shot while holding suspect',
+                      'Cop fatally shoots security guard at bar in Chicago suburbs',
+                     ],
+            url: ['https://www.buzzfeednews.com/article/maryanngeorgantopoulos/security-guard-illinois-bar-police-shot-killed-gun',
+                    'https://www.vox.com/identities/2018/11/12/18088874/jemel-roberson-police-shooting-security-guard-illinois',
+                    'https://www.theguardian.com/us-news/2018/nov/12/officer-fatally-shoots-security-guard-chicago-suburbs-bar',
+                    'https://www.npr.org/2018/11/13/667252788/police-fatally-shoot-black-security-guard-who-detained-suspected-shooter?t=1542105437068&t=1543335371240',
+                    'https://www.bbc.com/news/world-us-canada-46187460',
+                    'https://www.nytimes.com/2018/11/12/us/police-officer-shoots-security-guard-chicago.html',
+                    'https://www.foxnews.com/us/cop-accidentally-kills-security-guard-at-bar-in-chicago-suburbs',
+                    'https://www.dailymail.co.uk/wires/ap/article-6381075/Illinois-officer-responds-gunfire-fatally-shoots-guard.html',
+                    'https://nypost.com/2018/11/12/cop-fatally-shoots-security-guard-at-bar-in-chicago-suburbs/'
+                 ]
+            }
+
+    </script>
+    
+</head>
+<!--- Body --->
+<body>
+    <!--- Header --->
+    <header class="header">
+        <div class="header-overlay">
+            <div class="container">
+                <div class="header-text">
+                    <h1>Knowledge and the web project: <strong>Neutralizer</strong></h1>
+                    <p><u>Authors:</u> DAUDIER Chloé, Anh, Elias, Robbert</p>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+
+<!-- Url Table -->
+<container>
+    <div class="container">
+<!--        <img src="images/articles1.PNG" alt="Accidental shooting" class="center-block">-->
+        <h2><strong>Accidental shooting</strong></h2><strong>Mid-term Recount</strong></h2>
+        
+    </div>
+</container>
+<!-- Graph -->
+<body>
+    <div class="container">
+        <div class="section-graph">
+            <svg class="graph-svg" viewBox="200 0 400 500">
+            <script type="text/javascript">            
+                var width = 800,
+                    height = 500,
+                    radius = 6;
+                
+                var colors = d3.scaleOrdinal(d3.schemeCategory10);
+                
+                var svg = d3.select("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+                 //Draw the Rectangle
+                var rectangle = svg.append("line")
+                    .attr("x1", 0)
+                    .attr("y1", 0)
+                    .attr("x2", 0)
+                    .attr("y2", height)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", 0)
+                    .attr("y1", height)
+                    .attr("x2", width)
+                    .attr("y2", height)
+                    .attr("stroke-width", 4)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", width)
+                    .attr("y1", height)
+                    .attr("x2", width)
+                    .attr("y2", 0)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", width)
+                    .attr("y1", 0)
+                    .attr("x2", 0)
+                    .attr("y2", 0)
+                    .attr("stroke-width", 4)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );                 
+                ;                 
+                var areaPath = svg.append("path")
+                    .attr("clip-path", "url(#clip)")
+                    .attr("fill", "steelblue");
+                /*    d3.json("graph.json", function (error, graph) {
+                    if (error) throw error;*/
+                find_radius(graph.links, graph.nodes);
+                var simulation = d3.forceSimulation()
+                    .force("link", d3.forceLink().id(function (d) {return d.id;}).distance(100).strength(1))
+//                    .force("collide",d3.forceCollide( function(d){return d.radius + 8 }).iterations(16) )   
+                    .force("charge", d3.forceManyBody().strength(-250))/*.strength(-250).distanceMin(150).distanceMax(150)*/
+                    .force("x", d3.forceX(width / 2).strength(.05))
+                    .force("y", d3.forceY(height / 2).strength(.05))
+//                    .force("center", d3.forceCenter(width / 2, height / 2));
+                update(graph.links, graph.nodes);
+                svg.append("clipPath")
+                    .attr("id", "clip")
+                  .append("rect")
+                    .attr("width", width)
+                    .attr("height", height);            
+                function find_radius(links, nodes) {
+                    for (var i = 0; i < nodes.length; i++) {
+                        var child = 5;
+                        for (var j = 0; j < links.length; j++) {
+                            if (links[j]["target"] == nodes[i]["id"]) child += 1.2;
+                            if (links[j]["source"] == nodes[i]["id"]) child += 0.2;}
+                        nodes[i]["radius"] = child;
+                        for (var j = 0; j < links.length; j++) {
+                            if (links[j]["target"] == nodes[i]["id"]) links[j]["radius"] = child;
+                            if (links[j]["source"] == nodes[i]["id"]) links[i]["radius"] = child;}
+                    }
+                }
+                function update(links, nodes) {
+                    link = svg.selectAll(".link")
+                        .data(links)
+                        .enter()
+                        .append("line")
+                        .attr("class", "link")
+                        .attr("marker-end", function(d) { return "url(#marker" + d.target + ")"})
+
+                    node = svg.selectAll(".node")
+                        .data(nodes)
+                        .enter()
+                        .append("g")
+                        .attr("class", "node")
+                        .on("mouseover", mouseover)
+                        .on("mouseout", mouseout)
+                        .call(d3.drag()
+                                .on("start", dragstarted)
+                                .on("drag", dragged)
+                                .on("end", dragended));
+                  
+                    defs = svg.append("defs").selectAll(".marker")
+                        .data(nodes)
+                        .enter()
+                        .append("marker")
+                        .attr("class", "marker")
+                        .attr("id", function(d) { return "marker" + d.id })
+                        .attr("viewBox", "0 -5 10 10")
+                        .attr("refX", function(d) { 
+                          return d.radius + 12;   
+                        })
+                        .attr("refY", 0)
+                        .attr("markerWidth", 6)                        
+                        .attr("markerHeight", 6)
+                        .attr("orient", "auto")
+                        .append("path")
+                            .attr("d", "M0,-5 L10,0 L0,5")
+                            .style("stroke", "black")
+                            .style("fill", "black")
+                            .style("opacity", "1");
+                    
+                    node.append("circle")
+                        .attr("r", function(d) {return d.radius;})
+                        .style("fill", function (d) {return colors(d.group);})
+                    node.append("text")
+                        .attr("dy", function (d) {return d.radius*-1;})
+                        .text(function (d) {return d.id;})
+                        .style("font-weight",function (d) {
+                        if (d.group == 1) return "bold";});
+                    simulation
+                        .nodes(nodes)
+                        .on("tick", ticked)
+                    simulation.force("link")
+                        .links(links);
+                }
+                function ticked() {  
+                    node
+                        .attr("transform", function (d) {return "translate(" +(d.x) + ", " + (d.y) + ")";})
+                        .attr("cx", function(d) {
+                                return (d.x = Math.max(d.radius, Math.min(width - d.radius, d.x)));
+                        })
+                        .attr("cy", function(d) {
+                                return (d.y = Math.max(d.radius, Math.min(height - d.radius, d.y)));      
+                        });                    
+                    link
+                        .attr("x1", function (d) {return (d.source.x );})
+                        .attr("y1", function (d) {return (d.source.y );})
+                        .attr("x2", function (d) {return (d.target.x );})
+                        .attr("y2", function (d) {return (d.target.y );});               
+
+                }
+                function dragstarted(d) {
+                    if (!d3.event.active) simulation.alphaTarget(0.3).restart()
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+                function dragged(d) {
+                    d.fx = d3.event.x;
+                    d.fy = d3.event.y;
+                }
+                function dragended(d) {
+                  if (!d3.event.active) simulation.alphaTarget(0);
+                  d.fx = null;
+                  d.fy = null;
+                }                
+                function mouseover() {
+                  d3.select(this).select("circle").transition()
+                      .duration(750)
+                      .attr("r", function(d) {return d.radius+d.radius/2;});
+                }
+
+                function mouseout() {
+                  d3.select(this).select("circle").transition()
+                      .duration(750)
+                      .attr("r", function(d) {return d.radius;});
+                }                
+            </script>
+            </svg>
+        </div>
+    </div>
+</body>
+    
+<!--- import clusterTable.html --->
+<body>
+        <!-- Url Table -->
+            <div class="table-container">
+                        <table class='td-container' id="myTable"></table>
+                    </div>
+
+        </div>
+
+        <script>
+    
+    (function(){
+        console.log(data) 
+
+        var colors = ['teal',
+                        'blue',
+                    'red',
+                    'yellow',
+                    'gray',
+                    'green',
+                    'purple',
+                    'orange',
+                    'pale-red']
+    
+        //  // EXTRACT VALUE FOR HTML HEADER. 
+        //     // ('Book ID', 'Book Name', 'Category' and 'Price')
+        //     var col = [];
+        //     for (var i = 0; i < data.length; i++) {
+        //         for (var key in data[i]) {
+        //             if (col.indexOf(key) === -1) {
+        //                 col.push(key);
+        //             }
+        //         }
+        //     }
+        //     console.log(col)
+        // // CREATE DYNAMIC TABLE.
+        // var table = document.createElement("table");
+        // // ADD JSON DATA TO THE TABLE AS ROWS. articles
+        // for (var i = 0; i < data.length; i++) {
+    
+        //     tr = table.insertRow(-1);
+        //     var tabCell = tr.insertCell(-1);
+        //     tabCell.innerHTML = data[i][col[0]];
+    
+        //     for (var j = 1; j < col.length; j++) { //sentences
+        //         var tabCell = tr.insertCell(-1);
+        //         var sentences = data[i][col[j]];
+        //         var text = '';
+        //         for (var s = 0; s < sentences.length; s++) {
+        //             var sentence_color = data[i][col[j]][s]['clusterColorCode'] ;
+        //           text = text + '<div class="w3-container w3-'+ colors[sentence_color] + '">' + data[i][col[j]][s]['sentence'] + '</div>';
+        //         }
+        //         tabCell.innerHTML = text;
+        //     }
+        // }
+                // CREATE DYNAMIC TABLE.
+        var table = document.getElementById("myTable");
+        // ADD JSON DATA TO THE TABLE AS ROWS. articles
+        var header = table.createTHead();
+        publisherRow = header.insertRow(-1);
+        for (var i = 0; i < data.length; i++) { //sentences
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = data[i]['publication'];
+            publisherRow.appendChild(headerCell);
+            // var tabCell = publisherRow.insertCell(-1);
+            // tabCell.innerHTML = data[i]['publication'];
+        }
+
+        titleRow = table.insertRow(-1);
+        for (var i = 0; i < data.length; i++) { //sentences
+            var tabCell = titleRow.insertCell(-1);
+            tabCell.innerHTML = data[i]['sentences'][0]['title'];
+        }
+
+        textRow = table.insertRow(-1);
+        for (var j = 0; j < data.length; j++) { //sentences
+            var tabCell = textRow.insertCell(-1);
+            var sentences = data[j]['sentences'];
+            console.log(sentences[0]['sentence'])
+            var text = '';
+            for (var s = 0; s < sentences.length; s++) {
+                var sentence_color = sentences[s]['clusterColorCode'] ;
+
+                text = text + '<div class="w3-container w3-'+ colors[sentence_color] + '">' + sentences[s]['sentence'] + '</div>';
+            }
+            tabCell.innerHTML = text;
+        }
+        
+    
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+            // var divContainer = document.getElementById("showData");
+            // divContainer.innerHTML = "";
+            // divContainer.appendChild(table);
+    
+     })()
+    </script>
+    
+    
+    </body>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="copyright">
+                    <p>Copyright &copy; 2018 -<a href="#"> aloé</a> </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="scroll-top">
+                    <a href="#"><i class="fa fa-angle-up"></i> </a>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>   
+
+</html>

@@ -40,20 +40,59 @@ def clustertoJSON(sentenceFile, clusterFile, outputFile):
         json_data = json.dump(articles, out)
     return 1
 
+##cluster90
 ## topic 1
-clustertoJSON('Results/topic1_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/topic1_top5_after_cb.js')
-clustertoJSON('Results/topic1_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/topic1_top10_after_cb.js')
-clustertoJSON('Results/topic1_sentences_top5.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top5.tsv', 'Results/javascript/topic1_top5_.js')
-clustertoJSON('Results/topic1_sentences_top10.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top10.tsv', 'Results/javascript/topic1_top10.js')
+clustertoJSON('Results/topic1_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster90/topic1_top5_after_cb.js')
+clustertoJSON('Results/topic1_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster90/topic1_top10_after_cb.js')
+clustertoJSON('Results/topic1_sentences_top5.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top5.tsv', 'Results/javascript/cluster90/topic1_top5.js')
+clustertoJSON('Results/topic1_sentences_top10.tsv', 'Results/clustering/threshold 0.9/topic1_similarity_matrix_top10.tsv', 'Results/javascript/cluster90/topic1_top10.js')
 
 ## topic 2
-clustertoJSON('Results/topic2_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/topic2_top5_after_cb.js')
-clustertoJSON('Results/topic2_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/topic2_top10_after_cb.js')
-clustertoJSON('Results/topic2_sentences_top5.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top5.tsv', 'Results/javascript/topic2_top5_.js')
-clustertoJSON('Results/topic2_sentences_top10.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top10.tsv', 'Results/javascript/topic2_top10.js')
+clustertoJSON('Results/topic2_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.9/topic2_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster90/topic2_top5_after_cb.js')
+clustertoJSON('Results/topic2_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.9/topic2_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster90/topic2_top10_after_cb.js')
+clustertoJSON('Results/topic2_sentences_top5.tsv', 'Results/clustering/threshold 0.9/topic2_similarity_matrix_top5.tsv', 'Results/javascript/cluster90/topic2_top5.js')
+clustertoJSON('Results/topic2_sentences_top10.tsv', 'Results/clustering/threshold 0.9/topic2_similarity_matrix_top10.tsv', 'Results/javascript/cluster90/topic2_top10.js')
 
 ## topic 3
-clustertoJSON('Results/topic3_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/topic3_top5_after_cb.js')
-clustertoJSON('Results/topic3_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/topic3_top10_after_cb.js')
-clustertoJSON('Results/topic3_sentences_top5.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top5.tsv', 'Results/javascript/topic3_top5_.js')
-clustertoJSON('Results/topic3_sentences_top10.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top10.tsv', 'Results/javascript/topic3_top10.js')
+clustertoJSON('Results/topic3_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.9/topic3_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster90/topic3_top5_after_cb.js')
+clustertoJSON('Results/topic3_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.9/topic3_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster90/topic3_top10_after_cb.js')
+clustertoJSON('Results/topic3_sentences_top5.tsv', 'Results/clustering/threshold 0.9/topic3_similarity_matrix_top5.tsv', 'Results/javascript/cluster90/topic3_top5.js')
+clustertoJSON('Results/topic3_sentences_top10.tsv', 'Results/clustering/threshold 0.9/topic3_similarity_matrix_top10.tsv', 'Results/javascript/cluster90/topic3_top10.js')
+
+##cluster85
+## topic 1
+clustertoJSON('Results/topic1_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.85/topic1_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster85/topic1_top5_after_cb.js')
+clustertoJSON('Results/topic1_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.85/topic1_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster85/topic1_top10_after_cb.js')
+clustertoJSON('Results/topic1_sentences_top5.tsv', 'Results/clustering/threshold 0.85/topic1_similarity_matrix_top5.tsv', 'Results/javascript/cluster85/topic1_top5.js')
+clustertoJSON('Results/topic1_sentences_top10.tsv', 'Results/clustering/threshold 0.85/topic1_similarity_matrix_top10.tsv', 'Results/javascript/cluster85/topic1_top10.js')
+
+## topic 2
+clustertoJSON('Results/topic2_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster85/topic2_top5_after_cb.js')
+clustertoJSON('Results/topic2_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster85/topic2_top10_after_cb.js')
+clustertoJSON('Results/topic2_sentences_top5.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top5.tsv', 'Results/javascript/cluster85/topic2_top5.js')
+clustertoJSON('Results/topic2_sentences_top10.tsv', 'Results/clustering/threshold 0.85/topic2_similarity_matrix_top10.tsv', 'Results/javascript/cluster85/topic2_top10.js')
+
+## topic 3
+clustertoJSON('Results/topic3_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster85/topic3_top5_after_cb.js')
+clustertoJSON('Results/topic3_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster85/topic3_top10_after_cb.js')
+clustertoJSON('Results/topic3_sentences_top5.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top5.tsv', 'Results/javascript/cluster85/topic3_top5.js')
+clustertoJSON('Results/topic3_sentences_top10.tsv', 'Results/clustering/threshold 0.85/topic3_similarity_matrix_top10.tsv', 'Results/javascript/cluster85/topic3_top10.js')
+
+##cluster80
+## topic 1
+clustertoJSON('Results/topic1_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.8/topic1_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster80/topic1_top5_after_cb.js')
+clustertoJSON('Results/topic1_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.8/topic1_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster80/topic1_top10_after_cb.js')
+clustertoJSON('Results/topic1_sentences_top5.tsv', 'Results/clustering/threshold 0.8/topic1_similarity_matrix_top5.tsv', 'Results/javascript/cluster80/topic1_top5.js')
+clustertoJSON('Results/topic1_sentences_top10.tsv', 'Results/clustering/threshold 0.8/topic1_similarity_matrix_top10.tsv', 'Results/javascript/cluster80/topic1_top10.js')
+
+## topic 2
+clustertoJSON('Results/topic2_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.8/topic2_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster80/topic2_top5_after_cb.js')
+clustertoJSON('Results/topic2_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.8/topic2_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster80/topic2_top10_after_cb.js')
+clustertoJSON('Results/topic2_sentences_top5.tsv', 'Results/clustering/threshold 0.8/topic2_similarity_matrix_top5.tsv', 'Results/javascript/cluster80/topic2_top5.js')
+clustertoJSON('Results/topic2_sentences_top10.tsv', 'Results/clustering/threshold 0.8/topic2_similarity_matrix_top10.tsv', 'Results/javascript/cluster80/topic2_top10.js')
+
+## topic 3
+clustertoJSON('Results/topic3_sentences_top5_after_cb.tsv', 'Results/clustering/threshold 0.8/topic3_similarity_matrix_top5_after_cb.tsv', 'Results/javascript/cluster80/topic3_top5_after_cb.js')
+clustertoJSON('Results/topic3_sentences_top10_after_cb.tsv', 'Results/clustering/threshold 0.8/topic3_similarity_matrix_top10_after_cb.tsv', 'Results/javascript/cluster80/topic3_top10_after_cb.js')
+clustertoJSON('Results/topic3_sentences_top5.tsv', 'Results/clustering/threshold 0.8/topic3_similarity_matrix_top5.tsv', 'Results/javascript/cluster80/topic3_top5.js')
+clustertoJSON('Results/topic3_sentences_top10.tsv', 'Results/clustering/threshold 0.8/topic3_similarity_matrix_top10.tsv', 'Results/javascript/cluster80/topic3_top10.js')
