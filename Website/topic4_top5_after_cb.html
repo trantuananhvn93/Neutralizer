@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">        
+    <!--- Google fonts --->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500i,600,600i,700,700i,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500i,600,600i,700,700i,800,900" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
+
+    <!-- Fontawesome  -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- d3js graph style -->
+    <script src="http://d3js.org/d3.v4.min.js" type="text/javascript"></script>
+    <script src="http://d3js.org/d3-selection-multi.v1.js"></script>
+    
+    <!-- Show clustering of articles   -->
+    <script src="../Results/javascript/topic3_top5_after_cb.js" ></script>
+      
+    <!-- Graph with nodes and links   -->
+    <script type="text/javascript">
+        var graph = {
+    nodes: [{'id': 'theguardian', 'url': 'https://www.theguardian.com/world/2018/apr/27/korean-leaders-bond-handshakes-lot-pictures-korea-summit', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'twitter', 'url': "https://twitter.com/intent/tweet?text=Korean%20leaders%20bond%20over%20handshakes%20and%20'a%20lot%20of%20pictures'&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_tw", 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter1', 'url': 'https://twitter.com/joshjonsmith/status/989686723549450243', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian1', 'url': 'https://www.theguardian.com/us-news/2018/jun/10/trump-kim-jong-un-arrive-in-singapore-for-historic-summit', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian2', 'url': 'https://www.theguardian.com/media/2018/jun/10/a-fox-news-host-has-accidentally-referred-to-the-highly-anticipated-summit-between-president-donald-trump-and-north-korean-leader-kim-jong-un-as-a-meeting-of-two-dictators', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'pinterest', 'url': 'http://www.pinterest.com/pin/create/button/?description=Korean%20leaders%20bond%20over%20handshakes%20and%20%27a%20lot%20of%20pictures%27&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3Fpage%3Dwith%3Aimg-3%23img-3&media=https%3A%2F%2Fmedia.guim.co.uk%2F999bad9b03d85f007533dd2911d1088b190f7ab1%2F0_176_5372_3223%2F5372.jpg', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'pinterest1', 'url': 'http://www.pinterest.com/pin/create/button/?description=Korean%20leaders%20bond%20over%20handshakes%20and%20%27a%20lot%20of%20pictures%27&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3Fpage%3Dwith%3Aimg-4%23img-4&media=https%3A%2F%2Fmedia.guim.co.uk%2F215e5951514bd197e04978e6c0d06f2f29d85e34%2F0_224_4548_2729%2F4548.jpg', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian3', 'url': 'https://www.theguardian.com/us-news/2018/jun/11/trump-kim-summit-negotiators-north-korea-us-john-bolton', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'linkedin', 'url': 'http://www.linkedin.com/shareArticle?mini=true&title=Korean%20leaders%20bond%20over%20handshakes%20and%20%27a%20lot%20of%20pictures%27&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian4', 'url': 'https://www.theguardian.com/world/2018/apr/24/swiss-rosti-with-a-twist-north-and-south-korea-summit-menus-diplomacy', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook', 'url': 'https://www.facebook.com/dialog/share?app_id=180444840287&href=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_fb%26page%3Dwith%3Aimg-3%23img-3&picture=https%3A%2F%2Fmedia.guim.co.uk%2F999bad9b03d85f007533dd2911d1088b190f7ab1%2F0_176_5372_3223%2F5372.jpg', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian5', 'url': 'https://www.theguardian.com/world/2018/jun/11/kim-jong-undercover-north-korean-security-bars-onlookers-pictures', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'syndication.theguardian', 'url': 'https://syndication.theguardian.com/automation/?url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit&type=article&internalpagecode=4570704', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian6', 'url': 'https://www.theguardian.com/us-news/2018/jun/11/history-of-us-north-korea-deals-singapore-summit', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian7', 'url': 'https://www.theguardian.com/world/2018/jun/11/trump-kim-summit-north-korea-hails-new-era-of-relations-with-the-us', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook1', 'url': 'https://www.facebook.com/dialog/share?app_id=180444840287&href=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_fb', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian8', 'url': 'https://www.theguardian.com/world/2018/apr/27/north-south-korea-summit-leaders-promise-lasting-peace-denuclearisation-kim-jong-un-moon-jae-in', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'pinterest2', 'url': 'http://www.pinterest.com/pin/find/?url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'pinterest3', 'url': 'http://www.pinterest.com/pin/create/button/?description=Korean%20leaders%20bond%20over%20handshakes%20and%20%27a%20lot%20of%20pictures%27&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3Fpage%3Dwith%3Aimg-2%23img-2&media=https%3A%2F%2Fmedia.guim.co.uk%2Fd9e366edcf082ca438dbc29e82185e81d9bfe989%2F0_0_3555_2132%2F3555.jpg', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter2', 'url': "https://twitter.com/intent/tweet?text=Korean%20leaders%20bond%20over%20handshakes%20and%20'a%20lot%20of%20pictures'&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_tw%26page%3Dwith%3Aimg-3%23img-3", 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter3', 'url': "https://twitter.com/intent/tweet?text=Korean%20leaders%20bond%20over%20handshakes%20and%20'a%20lot%20of%20pictures'&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_tw%26page%3Dwith%3Aimg-2%23img-2", 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook2', 'url': 'https://www.facebook.com/dialog/share?app_id=180444840287&href=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_fb%26page%3Dwith%3Aimg-4%23img-4&picture=https%3A%2F%2Fmedia.guim.co.uk%2F215e5951514bd197e04978e6c0d06f2f29d85e34%2F0_224_4548_2729%2F4548.jpg', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian9', 'url': 'https://www.theguardian.com/world/gallery/2018/apr/27/north-south-leaders-meet-korea-summit-pictures', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian10', 'url': 'https://www.theguardian.com/world/2018/jun/11/north-korea-summit-explainer', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'theguardian111', 'url': 'https://www.theguardian.com/world/2018/jun/19/kim-jong-un-meets-xi-jinping-for-third-time', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter4', 'url': "https://twitter.com/intent/tweet?text=Korean%20leaders%20bond%20over%20handshakes%20and%20'a%20lot%20of%20pictures'&url=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_tw%26page%3Dwith%3Aimg-4%23img-4", 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook3', 'url': 'https://www.facebook.com/dialog/share?app_id=180444840287&href=https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2018%2Fapr%2F27%2Fkorean-leaders-bond-handshakes-lot-pictures-korea-summit%3FCMP%3Dshare_btn_fb%26page%3Dwith%3Aimg-2%23img-2&picture=https%3A%2F%2Fmedia.guim.co.uk%2Fd9e366edcf082ca438dbc29e82185e81d9bfe989%2F0_0_3555_2132%2F3555.jpg', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'wilsoncenter.org', 'url': 'https://www.wilsoncenter.org/article/historic-handshake', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'wilsoncenter.org1', 'url': 'https://www.wilsoncenter.org/korea-foundation-junior-scholars', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'wilsoncenter.org2', 'url': 'https://www.wilsoncenter.org/opportunity/internships-the-hyundai-motor-korea-foundation-center-for-korean-history-and-public', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'cnbc', 'url': 'https://www.cnbc.com/2018/04/27/watch-the-north-and-south-korean-leaders-historic-handshake.html', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'edition.cnn', 'url': 'https://edition.cnn.com/2013/06/28/world/asia/korean-war-fast-facts/index.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox', 'url': 'https://www.vox.com/2018/4/26/17288108/north-korea-south-korea-talks-kim-jong-un-moon-jae-in-handshake', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'twitter5', 'url': 'https://twitter.com/hashtag/tictocnews?src=hash&ref_src=twsrc%5Etfw', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox1', 'url': 'https://www.vox.com/2019/1/18/18186799/north-korea-trump-kim-summit-nuclear', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bloomberg', 'url': 'https://www.bloomberg.com/news/articles/2018-04-17/goodbye-dmz-what-an-end-to-the-korean-war-would-mean-quicktake?utm_source=twitter&utm_content=tictoc&cmpid%3D=socialflow-twitter-tictoc&utm_medium=social&utm_campaign=socialflow-organic', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox2', 'url': 'https://www.vox.com/world/2017/5/2/15520740/north-korea-nuclear-missile-trump', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox3', 'url': 'https://www.vox.com/policy-and-politics/2019/1/22/18177076/social-media-facebook-far-right-authoritarian-populism', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'english.yonhapnews.co.kr', 'url': 'http://english.yonhapnews.co.kr/news/2018/04/27/0200000000AEN20180427002100315.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox4', 'url': 'https://www.vox.com/2018/4/23/17270326/north-korea-trump-kim-jong-un-nuclear-missile', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox5', 'url': 'https://www.vox.com/2018/4/20/17264316/north-korea-nuclear-test-site-missile-program-freeze-trump-twitter', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'apnews', 'url': 'https://apnews.com/114e0ed62d5f48ebac4fa53a17dafe18', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter6', 'url': 'https://twitter.com/annafifield/status/989676373466800128?ref_src=twsrc%5Etfw', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox6', 'url': 'https://www.vox.com/2018/4/19/17256436/north-korea-trump-kim-moon-nuclear', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox7', 'url': 'https://www.vox.com/2018/4/18/17251322/pompeo-trump-kim-north-korea-nuclear', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter7', 'url': 'https://twitter.com/tictoc/status/989664291077828608?ref_src=twsrc%5Etfw', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'reuters', 'url': 'https://www.reuters.com/article/us-northkorea-southkorea/a-new-history-starts-now-as-leaders-of-two-koreas-begin-summit-idUSKBN1HX2I6', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter8', 'url': 'https://twitter.com/AP/status/989677721650368512', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'cnn', 'url': 'https://www.cnn.com/asia/live-news/north-korea-south-korea-summit-intl/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'vox8', 'url': 'https://www.vox.com/2019/1/23/18193174/covington-catholic-school-native-american-students-video', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter9', 'url': 'https://twitter.com/cnni/status/989666306147352577?ref_src=twsrc%5Etfw', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter10', 'url': 'https://twitter.com/niccijsmith/status/989679742386257921?ref_src=twsrc%5Etfw', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'globalresearch.ca', 'url': 'https://www.globalresearch.ca/north-and-south-korea-a-handshake-that-shook-the-world/5638846', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'globalresearch.ca1', 'url': 'https://www.globalresearch.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-10.05.34.png', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'globalresearch.ca2', 'url': 'https://www.globalresearch.ca/wp-content/uploads/2018/04/koreas.jpg', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'globalresearch.ca3', 'url': 'https://www.globalresearch.ca/north-korea-and-the-dangers-of-nuclear-war-the-demilitarization-of-the-korean-peninsula-towards-a-peace-agreement/5628390', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'globalresearch.ca4', 'url': 'https://www.globalresearch.ca/north-and-south-korea-a-handshake-that-shook-the-world/5638846?print=1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'uk.businessinsider', 'url': 'http://uk.businessinsider.com/north-korea-kim-jong-un-handshake-with-moon-jae-in-tourists-2018-5?r=US&IR=T', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'businessinsider', 'url': 'https://businessinsider.com/caroline-calloway-instagram-influencer-workshop-first-person-account-2019-1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'businessinsider1', 'url': 'https://businessinsider.com/new-federal-income-tax-brackets-tax-calculations-2019-1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'intelligence.businessinsider', 'url': 'http://intelligence.businessinsider.com/?utm_source=businessinsider&utm_medium=site_dropdown&utm_term=bi_site_dropdown&utm_content=bi_site_dropdown&utm_campaign=bi_site_dropdown', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'businessinsider2', 'url': 'https://businessinsider.com/government-shutdown-why-democrats-reject-trump-immigration-funding-deal-2019-1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'businessinsider3', 'url': 'https://businessinsider.com/government-shutdown-wilbur-ross-why-federal-workers-go-to-food-banks-2019-1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'qz', 'url': 'https://qz.com/1273932/north-korea-summit-tourists-are-recreating-the-famous-handshake-at-a-replica-of-the-unification-village/', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'businessinsider4', 'url': 'https://businessinsider.com/alexandria-ocasio-cortez-is-only-democrat-to-oppose-funding-bill-2019-1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'businessinsider5', 'url': 'http://www.businessinsider.com/kim-jong-un-meeting-moon-jae-in-pictures-photos-2018-4', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter111', 'url': "https://twitter.com/intent/tweet?text=Tourists in Korea are mimicking Kim Jong Un's historic handshake with South Korea's president https%3A%2F%2Fwww.businessinsider.com%2Fnorth-korea-kim-jong-un-handshake-with-moon-jae-in-tourists-2018-5%3Fr%3DUK%3Futm_source%3Dtwitter%26utm_medium%3Dreferral%26utm_content%3Dtopbar%26utm_term%3Ddesktop%26referrer%3Dtwitter via @businessinsider", 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'businessinsider6', 'url': 'http://www.businessinsider.com/trump-kim-jong-un-summit-in-singapore-gives-north-korea-legitimacy-2018-5', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'linkedin1', 'url': 'https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.businessinsider.com%2Fnorth-korea-kim-jong-un-handshake-with-moon-jae-in-tourists-2018-5%3Fr%3DUK%3Futm_source%3Dlinkedin%26utm_medium%3Dreferral%26utm_content%3Dtopbar%26utm_term%3Ddesktop%26referrer%3Dlinkedin&title=Tourists+in+Korea+are+mimicking+Kim+Jong+Un%27s+historic+handshake+with+South+Korea%27s+president&summary=North+Korean+leader+Kim+Jong+Un%27s+summit+with+South+Korean+President+Moon+Jae-in+has+sparked+a+new+trend%3A+tourists+are+mimicking+the+historic+handshake+between+the+two+leaders.', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook4', 'url': 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.businessinsider.com%2Fnorth-korea-kim-jong-un-handshake-with-moon-jae-in-tourists-2018-5%3Fr%3DUK%3Futm_source%3Dfacebook%26utm_medium%3Dreferral%26utm_content%3Dtopbar%26utm_term%3Ddesktop%26referrer%3Dfacebook', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'reuters1', 'url': 'https://www.reuters.com/article/us-northkorea-southkorea-scene/smiles-and-handshakes-open-korea-summit-north-korea-kim-enlightens-mood-idUSKBN1HY08M', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'thomsonreuters', 'url': 'https://www.thomsonreuters.com/en/products-services/government-solutions.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'thomsonreuters1', 'url': 'https://www.thomsonreuters.com/en/products-services/legal.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'thomsonreuters2', 'url': 'http://thomsonreuters.com/en/about-us/trust-principles.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'reuters2', 'url': 'https://www.reuters.com/subjects/myanmar-reporters', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'thomsonreuters3', 'url': 'https://www.thomsonreuters.com/en/products-services/tax-accounting.html', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'reuters.zendesk', 'url': 'https://reuters.zendesk.com/hc/en-us/articles/216467423-Contact-Reuters', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'washingtonpost', 'url': 'https://www.washingtonpost.com/news/worldviews/wp/2018/02/09/photo-of-historic-handshake-between-north-and-south-korea-goes-viral/?noredirect=on&utm_term=.383a551497f9', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'subscribe.washingtonpost', 'url': 'https://subscribe.washingtonpost.com/acquisition/?nid=top_pb_subscribe&promo=o5&oscode=RPWH&destination=/news/worldviews/wp/2018/02/09/photo-of-historic-handshake-between-north-and-south-korea-goes-viral/&tid=nav_subscribe_logged_in', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'washingtonpost1', 'url': 'https://www.washingtonpost.com/world/asia_pacific/kim-jong-un-to-send-his-sister-to-south-korea-as-part-of-the-olympics-delegation/2018/02/07/4a7c7e52-0bd7-11e8-baf5-e629fc1cd21e_story.html?utm_term=.d760d805afc8', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'subscribe.washingtonpost1', 'url': 'https://subscribe.washingtonpost.com/acquisition/?nid=top_pb_subscribe&promo=o3&oscode=RPWH&destination=/news/worldviews/wp/2018/02/09/photo-of-historic-handshake-between-north-and-south-korea-goes-viral/&tid=nav_subscribe_logged_out', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'washingtonpost2', 'url': 'https://www.washingtonpost.com/news/worldviews/wp/2018/02/08/who-is-kim-yo-jong-heres-what-we-know-about-the-north-korean-princess/?utm_term=.917136906978', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'washingtonpost3', 'url': 'http://www.washingtonpost.com/pb/news/worldviews/wp/2018/02/09/photo-of-historic-handshake-between-north-and-south-korea-goes-viral/?outputType=accessibility&nid=menu_nav_accessibilityforscreenreader', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'washingtonpost4', 'url': 'https://www.washingtonpost.com/world/asia_pacific/as-olympics-open-with-dazzling-spectacle-all-eyes-are-on-north-korea/2018/02/09/97bac158-0b7b-11e8-998c-96deb18cca19_story.html?utm_term=.a753398682ba', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc', 'url': 'https://www.bbc.com/news/world-asia-43932032', 'titre': 'null', 'radius': '1', 'group': '1'}, {'id': 'facebook5', 'url': 'http://www.facebook.com/dialog/feed?app_id=58567469885&redirect_uri=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-asia-43932032&link=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-asia-43932032%3FSThisFB&display=popup', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk', 'url': 'https://www.bbc.co.uk/music/articles/d37a03cb-41e5-43c8-b88d-8e1f59fd9998?intc_type=promo&intc_location=news&intc_campaign=misheardlyrics_quiz&intc_linkname=bbcmusic_rm_low_c3', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'news.bbc.co.uk', 'url': 'http://news.bbc.co.uk/1/shared/bsp/hi/pdfs/27_04_2018_korean_declaration.pdf', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'account.bbc', 'url': 'https://account.bbc.com/account?ptrt=https://www.bbc.com/news/world-asia-43932032', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'linkedin2', 'url': 'https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-asia-43932032&title=Koreas%20summit%3A%20Will%20historic%20talks%20lead%20to%20lasting%20peace%3F&summary=Dr%20John%20Nilsson-Wright%20looks%20at%20the%20outcome%20of%20talks%20between%20North%20and%20South%20Korea%27s%20leaders.&source=BBC', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'uk.pinterest', 'url': 'https://uk.pinterest.com/pin/create/bookmarklet/?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-asia-43932032&description=Dr%20John%20Nilsson-Wright%20looks%20at%20the%20outcome%20of%20talks%20between%20North%20and%20South%20Korea%27s%20leaders.&title=Koreas%20summit%3A%20Will%20historic%20talks%20lead%20to%20lasting%20peace%3F&media=https%3A%2F%2Fwww.bbc.co.uk%2Fnews%2Fspecial%2F2015%2Fnewsspec_10857%2Fbbc_news_logo.png%3Fcb%3D1', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk1', 'url': 'https://www.bbc.co.uk/bbcthree/article/063dba1d-2ab2-40e3-9837-3d70481ef82c?intc_type=promo&intc_location=news&intc_campaign=whathappenstoyourbodyinheat_article&intc_linkname=bbcthree_yc_low_c3', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'twitter1112', 'url': 'https://twitter.com/intent/tweet?text=BBC%20News%20-%20Koreas%20summit%3A%20Will%20historic%20talks%20lead%20to%20lasting%20peace%3F&url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-asia-43932032', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk2', 'url': 'https://www.bbc.co.uk/faqs/questions/bbc_online/sharing', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'bbc.co.uk3', 'url': 'http://www.bbc.co.uk/news/live/world-asia-43903305', 'titre': 'null', 'radius': '1', 'group': '2'}, {'id': 'facebook6', 'url': 'http://www.facebook.com/dialog/send?app_id=58567469885&redirect_uri=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-asia-43932032&link=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-asia-43932032%3FSThisFB&display=popup', 'titre': 'null', 'radius': '1', 'group': '2'}],
+
+links: [{'source': 'theguardian', 'target': 'twitter', 'radius': 1}, {'source': 'theguardian', 'target': 'twitter1', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian1', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian2', 'radius': 1}, {'source': 'theguardian', 'target': 'pinterest', 'radius': 1}, {'source': 'theguardian', 'target': 'pinterest1', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian3', 'radius': 1}, {'source': 'theguardian', 'target': 'linkedin', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian4', 'radius': 1}, {'source': 'theguardian', 'target': 'facebook', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian5', 'radius': 1}, {'source': 'theguardian', 'target': 'syndication.theguardian', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian6', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian7', 'radius': 1}, {'source': 'theguardian', 'target': 'facebook1', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian8', 'radius': 1}, {'source': 'theguardian', 'target': 'pinterest2', 'radius': 1}, {'source': 'theguardian', 'target': 'pinterest3', 'radius': 1}, {'source': 'theguardian', 'target': 'twitter2', 'radius': 1}, {'source': 'theguardian', 'target': 'twitter3', 'radius': 1}, {'source': 'theguardian', 'target': 'facebook2', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian9', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian10', 'radius': 1}, {'source': 'theguardian', 'target': 'theguardian111', 'radius': 1}, {'source': 'theguardian', 'target': 'twitter4', 'radius': 1}, {'source': 'theguardian', 'target': 'facebook3', 'radius': 1}, {'source': 'wilsoncenter.org', 'target': 'wilsoncenter.org1', 'radius': 1}, {'source': 'wilsoncenter.org', 'target': 'wilsoncenter.org2', 'radius': 1}, {'source': 'cnbc', 'target': 'edition.cnn', 'radius': 1}, {'source': 'vox', 'target': 'twitter5', 'radius': 1}, {'source': 'vox', 'target': 'vox1', 'radius': 1}, {'source': 'vox', 'target': 'bloomberg', 'radius': 1}, {'source': 'vox', 'target': 'vox2', 'radius': 1}, {'source': 'vox', 'target': 'vox3', 'radius': 1}, {'source': 'vox', 'target': 'english.yonhapnews.co.kr', 'radius': 1}, {'source': 'vox', 'target': 'vox4', 'radius': 1}, {'source': 'vox', 'target': 'vox5', 'radius': 1}, {'source': 'vox', 'target': 'apnews', 'radius': 1}, {'source': 'vox', 'target': 'twitter6', 'radius': 1}, {'source': 'vox', 'target': 'vox6', 'radius': 1}, {'source': 'vox', 'target': 'vox7', 'radius': 1}, {'source': 'vox', 'target': 'twitter7', 'radius': 1}, {'source': 'vox', 'target': 'reuters', 'radius': 1}, {'source': 'vox', 'target': 'twitter8', 'radius': 1}, {'source': 'vox', 'target': 'cnn', 'radius': 1}, {'source': 'vox', 'target': 'vox8', 'radius': 1}, {'source': 'vox', 'target': 'twitter9', 'radius': 1}, {'source': 'vox', 'target': 'twitter10', 'radius': 1}, {'source': 'globalresearch.ca', 'target': 'globalresearch.ca1', 'radius': 1}, {'source': 'globalresearch.ca', 'target': 'globalresearch.ca2', 'radius': 1}, {'source': 'globalresearch.ca', 'target': 'globalresearch.ca3', 'radius': 1}, {'source': 'globalresearch.ca', 'target': 'globalresearch.ca4', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'businessinsider', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'businessinsider1', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'intelligence.businessinsider', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'businessinsider2', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'businessinsider3', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'qz', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'businessinsider4', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'businessinsider5', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'twitter111', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'businessinsider6', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'linkedin1', 'radius': 1}, {'source': 'uk.businessinsider', 'target': 'facebook4', 'radius': 1}, {'source': 'reuters1', 'target': 'thomsonreuters', 'radius': 1}, {'source': 'reuters1', 'target': 'thomsonreuters1', 'radius': 1}, {'source': 'reuters1', 'target': 'thomsonreuters2', 'radius': 1}, {'source': 'reuters1', 'target': 'reuters2', 'radius': 1}, {'source': 'reuters1', 'target': 'thomsonreuters3', 'radius': 1}, {'source': 'reuters1', 'target': 'reuters.zendesk', 'radius': 1}, {'source': 'washingtonpost', 'target': 'subscribe.washingtonpost', 'radius': 1}, {'source': 'washingtonpost', 'target': 'washingtonpost1', 'radius': 1}, {'source': 'washingtonpost', 'target': 'subscribe.washingtonpost1', 'radius': 1}, {'source': 'washingtonpost', 'target': 'washingtonpost2', 'radius': 1}, {'source': 'washingtonpost', 'target': 'washingtonpost3', 'radius': 1}, {'source': 'washingtonpost', 'target': 'washingtonpost4', 'radius': 1}, {'source': 'bbc', 'target': 'facebook5', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk', 'radius': 1}, {'source': 'bbc', 'target': 'news.bbc.co.uk', 'radius': 1}, {'source': 'bbc', 'target': 'account.bbc', 'radius': 1}, {'source': 'bbc', 'target': 'linkedin2', 'radius': 1}, {'source': 'bbc', 'target': 'uk.pinterest', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk1', 'radius': 1}, {'source': 'bbc', 'target': 'twitter1112', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk2', 'radius': 1}, {'source': 'bbc', 'target': 'bbc.co.uk3', 'radius': 1}, {'source': 'bbc', 'target': 'facebook6', 'radius': 1}]}
+            
+        var articles = {
+            id: ['BuzzFeed News', 'Vox', 'The Guardian', 'NPR', 'BBC News', 'The New York Times',
+                'Fox News', 'Daily Mail', 'New York Post'
+                ],
+            title: ['A Security Guard Who Stopped A Gunman At A Bar Was Shot And Killed By Responding Police',
+                      'A black security guard caught a shooting suspect - only to be shot by police minutes later',
+                      'Officer fatally shoots security guard who detained gunman at suburban Chicago bar',
+                      'Police Fatally Shoot Black Security Guard Who Detained Shooting Suspect',
+                      'Outcry after police shoot African-American security guard hero',
+                      'Black Security Guard Responding to Shooting Is Killed by Police',
+                      'Cop accidentally kills security guard at bar in Chicago suburbs: report',
+                      'Lawsuit alleges security guard shot while holding suspect',
+                      'Cop fatally shoots security guard at bar in Chicago suburbs',
+                     ],
+            url: ['https://www.buzzfeednews.com/article/maryanngeorgantopoulos/security-guard-illinois-bar-police-shot-killed-gun',
+                    'https://www.vox.com/identities/2018/11/12/18088874/jemel-roberson-police-shooting-security-guard-illinois',
+                    'https://www.theguardian.com/us-news/2018/nov/12/officer-fatally-shoots-security-guard-chicago-suburbs-bar',
+                    'https://www.npr.org/2018/11/13/667252788/police-fatally-shoot-black-security-guard-who-detained-suspected-shooter?t=1542105437068&t=1543335371240',
+                    'https://www.bbc.com/news/world-us-canada-46187460',
+                    'https://www.nytimes.com/2018/11/12/us/police-officer-shoots-security-guard-chicago.html',
+                    'https://www.foxnews.com/us/cop-accidentally-kills-security-guard-at-bar-in-chicago-suburbs',
+                    'https://www.dailymail.co.uk/wires/ap/article-6381075/Illinois-officer-responds-gunfire-fatally-shoots-guard.html',
+                    'https://nypost.com/2018/11/12/cop-fatally-shoots-security-guard-at-bar-in-chicago-suburbs/'
+                 ]
+            }
+
+    </script>
+    
+</head>
+<!--- Body --->
+<body>
+    <!--- Header --->
+    <header class="header">
+        <div class="header-overlay">
+            <div class="container">
+                <div class="header-text">
+                    <h1>Knowledge and the web project: <strong>Neutralizer</strong></h1>
+                    <p><u>Authors:</u> DAUDIER Chloé, Anh, Elias, Robbert</p>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+
+<!-- Url Table -->
+<container>
+    <div class="container">
+<!--        <img src="images/articles1.PNG" alt="Accidental shooting" class="center-block">-->
+        <h2>Global subject for serie 1 of articles: <strong>Accidental shooting</strong></h2>
+        <table>
+            <tr>
+                <th>Newspaper</th>
+                <th>Article</th> 
+                <th>URL</th>
+            </tr>
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[0])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[0])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[0])</script></td>
+            </tr>
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[1])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[1])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[1])</script></td>
+            </tr>
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[2])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[2])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[2])</script></td>
+            </tr>
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[3])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[3])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[3])</script></td>
+            </tr>
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[4])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[4])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[4])</script></td>
+            </tr>
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[5])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[5])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[5])</script></td>
+            </tr> 
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[6])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[6])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[6])</script></td>
+            </tr> 
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[7])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[7])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[7])</script></td>
+            </tr> 
+            <tr>
+                <td><script type="text/javascript">document.write(articles.id[8])</script></td>
+                <td><script type="text/javascript">document.write(articles.title[8])</script></td> 
+                <td><script type="text/javascript">document.write(articles.url[8])</script></td>
+            </tr>             
+        </table>
+    </div>
+</container>
+<!-- Graph -->
+<body>
+    <div class="container">
+        <div class="section-graph">
+            <svg class="graph-svg" viewBox="200 0 400 500">
+            <script type="text/javascript">            
+                var width = 800,
+                    height = 500,
+                    radius = 6;
+                
+                var colors = d3.scaleOrdinal(d3.schemeCategory10);
+                
+                var svg = d3.select("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+                 //Draw the Rectangle
+                var rectangle = svg.append("line")
+                    .attr("x1", 0)
+                    .attr("y1", 0)
+                    .attr("x2", 0)
+                    .attr("y2", height)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", 0)
+                    .attr("y1", height)
+                    .attr("x2", width)
+                    .attr("y2", height)
+                    .attr("stroke-width", 4)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", width)
+                    .attr("y1", height)
+                    .attr("x2", width)
+                    .attr("y2", 0)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );
+                var rectangle = svg.append("line")
+                    .attr("x1", width)
+                    .attr("y1", 0)
+                    .attr("x2", 0)
+                    .attr("y2", 0)
+                    .attr("stroke-width", 4)
+                    .attr("stroke", "rgba(31, 31, 31, 0.75)" );                 
+                ;                 
+                var areaPath = svg.append("path")
+                    .attr("clip-path", "url(#clip)")
+                    .attr("fill", "steelblue");
+                /*    d3.json("graph.json", function (error, graph) {
+                    if (error) throw error;*/
+                find_radius(graph.links, graph.nodes);
+                var simulation = d3.forceSimulation()
+                    .force("link", d3.forceLink().id(function (d) {return d.id;}).distance(100).strength(1))
+//                    .force("collide",d3.forceCollide( function(d){return d.radius + 8 }).iterations(16) )   
+                    .force("charge", d3.forceManyBody().strength(-250))/*.strength(-250).distanceMin(150).distanceMax(150)*/
+                    .force("x", d3.forceX(width / 2).strength(.05))
+                    .force("y", d3.forceY(height / 2).strength(.05))
+//                    .force("center", d3.forceCenter(width / 2, height / 2));
+                update(graph.links, graph.nodes);
+                svg.append("clipPath")
+                    .attr("id", "clip")
+                  .append("rect")
+                    .attr("width", width)
+                    .attr("height", height);            
+                function find_radius(links, nodes) {
+                    for (var i = 0; i < nodes.length; i++) {
+                        var child = 5;
+                        for (var j = 0; j < links.length; j++) {
+                            if (links[j]["target"] == nodes[i]["id"]) child += 1.2;
+                            if (links[j]["source"] == nodes[i]["id"]) child += 0.2;}
+                        nodes[i]["radius"] = child;
+                        for (var j = 0; j < links.length; j++) {
+                            if (links[j]["target"] == nodes[i]["id"]) links[j]["radius"] = child;
+                            if (links[j]["source"] == nodes[i]["id"]) links[i]["radius"] = child;}
+                    }
+                }
+                function update(links, nodes) {
+                    link = svg.selectAll(".link")
+                        .data(links)
+                        .enter()
+                        .append("line")
+                        .attr("class", "link")
+                        .attr("marker-end", function(d) { return "url(#marker" + d.target + ")"})
+
+                    node = svg.selectAll(".node")
+                        .data(nodes)
+                        .enter()
+                        .append("g")
+                        .attr("class", "node")
+                        .on("mouseover", mouseover)
+                        .on("mouseout", mouseout)
+                        .call(d3.drag()
+                                .on("start", dragstarted)
+                                .on("drag", dragged)
+                                .on("end", dragended));
+                  
+                    defs = svg.append("defs").selectAll(".marker")
+                        .data(nodes)
+                        .enter()
+                        .append("marker")
+                        .attr("class", "marker")
+                        .attr("id", function(d) { return "marker" + d.id })
+                        .attr("viewBox", "0 -5 10 10")
+                        .attr("refX", function(d) { 
+                          return d.radius + 12;   
+                        })
+                        .attr("refY", 0)
+                        .attr("markerWidth", 6)                        
+                        .attr("markerHeight", 6)
+                        .attr("orient", "auto")
+                        .append("path")
+                            .attr("d", "M0,-5 L10,0 L0,5")
+                            .style("stroke", "black")
+                            .style("fill", "black")
+                            .style("opacity", "1");
+                    
+                    node.append("circle")
+                        .attr("r", function(d) {return d.radius;})
+                        .style("fill", function (d) {return colors(d.group);})
+                    node.append("text")
+                        .attr("dy", function (d) {return d.radius*-1;})
+                        .text(function (d) {return d.id;})
+                        .style("font-weight",function (d) {
+                        if (d.group == 1) return "bold";});
+                    simulation
+                        .nodes(nodes)
+                        .on("tick", ticked)
+                    simulation.force("link")
+                        .links(links);
+                }
+                function ticked() {  
+                    node
+                        .attr("transform", function (d) {return "translate(" +(d.x) + ", " + (d.y) + ")";})
+                        .attr("cx", function(d) {
+                                return (d.x = Math.max(d.radius, Math.min(width - d.radius, d.x)));
+                        })
+                        .attr("cy", function(d) {
+                                return (d.y = Math.max(d.radius, Math.min(height - d.radius, d.y)));      
+                        });                    
+                    link
+                        .attr("x1", function (d) {return (d.source.x );})
+                        .attr("y1", function (d) {return (d.source.y );})
+                        .attr("x2", function (d) {return (d.target.x );})
+                        .attr("y2", function (d) {return (d.target.y );});               
+
+                }
+                function dragstarted(d) {
+                    if (!d3.event.active) simulation.alphaTarget(0.3).restart()
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+                function dragged(d) {
+                    d.fx = d3.event.x;
+                    d.fy = d3.event.y;
+                }
+                function dragended(d) {
+                  if (!d3.event.active) simulation.alphaTarget(0);
+                  d.fx = null;
+                  d.fy = null;
+                }                
+                function mouseover() {
+                  d3.select(this).select("circle").transition()
+                      .duration(750)
+                      .attr("r", function(d) {return d.radius+d.radius/2;});
+                }
+
+                function mouseout() {
+                  d3.select(this).select("circle").transition()
+                      .duration(750)
+                      .attr("r", function(d) {return d.radius;});
+                }                
+            </script>
+            </svg>
+        </div>
+    </div>
+</body>
+    
+<!--- import clusterTable.html --->
+<body>
+        <!-- Url Table -->
+            <div class="table-container">
+                        <table class='td-container' id="myTable"></table>
+                    </div>
+
+        </div>
+
+        <script>
+    
+    (function(){
+        console.log(data) 
+
+        var colors = ['teal',
+                        'blue',
+                    'red',
+                    'yellow',
+                    'gray',
+                    'green',
+                    'purple',
+                    'orange',
+                    'pale-red']
+    
+        //  // EXTRACT VALUE FOR HTML HEADER. 
+        //     // ('Book ID', 'Book Name', 'Category' and 'Price')
+        //     var col = [];
+        //     for (var i = 0; i < data.length; i++) {
+        //         for (var key in data[i]) {
+        //             if (col.indexOf(key) === -1) {
+        //                 col.push(key);
+        //             }
+        //         }
+        //     }
+        //     console.log(col)
+        // // CREATE DYNAMIC TABLE.
+        // var table = document.createElement("table");
+        // // ADD JSON DATA TO THE TABLE AS ROWS. articles
+        // for (var i = 0; i < data.length; i++) {
+    
+        //     tr = table.insertRow(-1);
+        //     var tabCell = tr.insertCell(-1);
+        //     tabCell.innerHTML = data[i][col[0]];
+    
+        //     for (var j = 1; j < col.length; j++) { //sentences
+        //         var tabCell = tr.insertCell(-1);
+        //         var sentences = data[i][col[j]];
+        //         var text = '';
+        //         for (var s = 0; s < sentences.length; s++) {
+        //             var sentence_color = data[i][col[j]][s]['clusterColorCode'] ;
+        //           text = text + '<div class="w3-container w3-'+ colors[sentence_color] + '">' + data[i][col[j]][s]['sentence'] + '</div>';
+        //         }
+        //         tabCell.innerHTML = text;
+        //     }
+        // }
+                // CREATE DYNAMIC TABLE.
+        var table = document.getElementById("myTable");
+        // ADD JSON DATA TO THE TABLE AS ROWS. articles
+        var header = table.createTHead();
+        publisherRow = header.insertRow(-1);
+        for (var i = 0; i < data.length; i++) { //sentences
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = data[i]['publication'];
+            publisherRow.appendChild(headerCell);
+            // var tabCell = publisherRow.insertCell(-1);
+            // tabCell.innerHTML = data[i]['publication'];
+        }
+
+        titleRow = table.insertRow(-1);
+        for (var i = 0; i < data.length; i++) { //sentences
+            var tabCell = titleRow.insertCell(-1);
+            tabCell.innerHTML = data[i]['sentences'][0]['title'];
+        }
+
+        textRow = table.insertRow(-1);
+        for (var j = 0; j < data.length; j++) { //sentences
+            var tabCell = textRow.insertCell(-1);
+            var sentences = data[j]['sentences'];
+            console.log(sentences[0]['sentence'])
+            var text = '';
+            for (var s = 0; s < sentences.length; s++) {
+                var sentence_color = sentences[s]['clusterColorCode'] ;
+
+                text = text + '<div class="w3-container w3-'+ colors[sentence_color] + '">' + sentences[s]['sentence'] + '</div>';
+            }
+            tabCell.innerHTML = text;
+        }
+        
+    
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+            // var divContainer = document.getElementById("showData");
+            // divContainer.innerHTML = "";
+            // divContainer.appendChild(table);
+    
+     })()
+    </script>
+    
+    
+    </body>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="copyright">
+                    <p>Copyright &copy; 2018 -<a href="#"> aloé</a> </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="scroll-top">
+                    <a href="#"><i class="fa fa-angle-up"></i> </a>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>   
+
+</html>
