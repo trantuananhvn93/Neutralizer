@@ -38,15 +38,11 @@ def read_articles(file):
     df["id2"] = df["id2"].astype(int)
     return df
 
-def get_clusters(file_name, threshold):
-#    input_path = "../../Results/similarity_matrix_top10_topic1.tsv"
-#    output_path = '../../Results/clustering/clustering_top10_topic1.tsv'
-    input_path = os.path.join("../../Results",file_name)
-    output_path =  os.path.join("../../Results/clustering",file_name)
+def get_clusters(input_file, output_file, threshold):
+#    input_path = os.path.join("../../Results",file_name)
+#    output_path =  os.path.join("../../Results/clustering",file_name)
     
-#    matrix = pd.read_csv(input_path, sep='\t', header=None)
-#    matrix.columns = ["id1", "id2", "sent1", "sent2", "score"]
-    matrix =read_articles(input_path)
+    matrix = read_articles(input_file)
     
     list_sent_id = matrix.loc[matrix['id1'] == 0, "id2"].tolist()
     list_sent = matrix.loc[matrix['id1'] == 0, "sent2"].tolist()
@@ -65,12 +61,14 @@ def get_clusters(file_name, threshold):
     if flag_symmetric:
         print("Similarity matrix is symmetric !")
         cluster_results = hierarchy_cluster(df_sent, similarity_matrix, threshold = (1-threshold))
-        cluster_results.to_csv(output_path, sep='\t', index=False) 
+        cluster_results.to_csv(output_file, sep='\t', index=False) 
     else:
         print("Similarity matrix is assymmetric !")
 
 
 if __name__ == '__main__':
+	input_path = "../../Results"
+	output_path = "../../Results/clustering"
     for i in range(1,4):
         print("topic",i)
         file1 = "topic" + str(i) + "_similarity_matrix_top5.tsv"
@@ -79,7 +77,9 @@ if __name__ == '__main__':
         file4 = "topic" + str(i) + "_similarity_matrix_top10_after_cb.tsv"
         files = [file1, file2, file3, file4]
         for file in files:
-            get_clusters(file, threshold=0.85)
+			input_file = os.path.join(input_path,file)
+			output_file = os.path.join(output_path,file)
+            get_clusters(input_file, output_file, threshold=0.85)
             
             
 #    HIERARCHY CLUSTERING - DENDOGRAM

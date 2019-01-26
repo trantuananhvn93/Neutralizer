@@ -5,7 +5,7 @@ generate_ref_map=0
 generate_summaries=0
 generate_cb_summaries=0
 generate_similarity_files=0
-generate_cluster_files=0
+generate_cluster_files=1
 generate_webpages=0
 
 
@@ -73,8 +73,8 @@ fi
 # Generate cluster files
 if [ $generate_cluster_files -eq 1 ]; then
     echo "Generating cluster files.."
-
-
+	pushd textrank
+	python3.6 cluster.py
     echo
 fi
 
