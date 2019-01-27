@@ -73,8 +73,9 @@ fi
 # Generate cluster files
 if [ $generate_cluster_files -eq 1 ]; then
     echo "Generating cluster files.."
-	pushd textrank
-	python3.6 cluster.py
+        pushd textrank
+        python3.6 cluster.py
+        popd
     echo
 fi
 
