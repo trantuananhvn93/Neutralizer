@@ -82,7 +82,7 @@ if __name__ == '__main__':
         for threshold in threshold_values:
             for file in files:            
                 folder_name = "threshold_" + str(threshold) 
-                input_file = os.path.join(input_path, folder_name, file)
+                input_file = os.path.join(input_path, file)
                 output_file = os.path.join(output_path, folder_name, file)
                 get_clusters(input_file, output_file, threshold=threshold)
             
