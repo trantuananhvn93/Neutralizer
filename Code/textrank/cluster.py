@@ -69,6 +69,8 @@ def get_clusters(input_file, output_file, threshold):
 if __name__ == '__main__':
     input_path = "../../Results"
     output_path = "../../Results/clustering"
+    threshold_values = [0.8, 0.85, 0.9]
+    
     for i in range(1,4):
         print("topic",i)
         file1 = "topic" + str(i) + "_similarity_matrix_top5.tsv"
@@ -76,10 +78,13 @@ if __name__ == '__main__':
         file3 = "topic" + str(i) + "_similarity_matrix_top10.tsv"
         file4 = "topic" + str(i) + "_similarity_matrix_top10_after_cb.tsv"
         files = [file1, file2, file3, file4]
-        for file in files:
-            input_file = os.path.join(input_path,file)
-            output_file = os.path.join(output_path,file)
-            get_clusters(input_file, output_file, threshold=0.85)
+        
+        for threshold in threshold_values:
+            for file in files:            
+                folder_name = "threshold_" + str(threshold) 
+                input_file = os.path.join(input_path, folder_name, file)
+                output_file = os.path.join(output_path, folder_name, file)
+                get_clusters(input_file, output_file, threshold=threshold)
             
             
 #    HIERARCHY CLUSTERING - DENDOGRAM
