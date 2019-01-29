@@ -9,11 +9,11 @@ generate_cluster_files=0
 generate_webpages=0
 
 
-# Generate reference maps
-if [ $generate_ref_map -eq 1 ]; then
+# Generate reference maps graph
+if [ $generate_ref_map_graph -eq 1 ]; then
     echo "Generating reference maps.."
-
-
+    # Only for topic 1, txt file saved in Results
+    python3.6 neutralizer_mapper.py
     echo
 fi
 

@@ -146,7 +146,7 @@ def main():
 							"target": link_name,
 							"radius": 1})
 	graph = {'nodes':nodes,'links':links}
-	write_txt_file(str(graph),"serie1bis.txt")
+	write_txt_file(str(graph),"../Results/serie1results.txt")
 
 if __name__ == '__main__':
 	main()
