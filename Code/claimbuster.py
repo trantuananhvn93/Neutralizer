@@ -57,7 +57,7 @@ def get_CB_thesholded_article(text, threshold):
         if float(sentence.get('score')) > threshold:
             out += sentence.get('text') + ' '
         else:
-            print(sentence.get('text'))
+            print("Sentence removed: " + sentence.get('text'))
     return out
 
 def get_CB_thesholded_article_top(text, amount_sentences):
@@ -119,14 +119,17 @@ def score_summaries():
     f.close()
 
 def cb(summaryPath, outputPath, threshold):
-    with open(outputPath, 'w') as f:
+    dirname = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(dirname, '../')
+    oPath = os.path.join(filepath, outputPath)
+    with open(oPath, 'w') as f:
         id=1
         f.write('article_id'+'\t'+'topic_id'+'\t''topic'+'\t'+'title'+'\t'+'publication'+'\t'+'url'+'\t'+'article'+'\n')
-        while(id<27):
-            item = dataIO.readData(id, summaryPath)
+        
+        articleList = dataIO.readData(summaryPath)
+        for item in articleList:
             text = item.get('article')
             after_cb = get_CB_thesholded_article(text, threshold)
-            id+=1
             
             item['article'] = after_cb
             line = item.get('article_id')+'\t'+item.get('topic_id')+'\t'+item.get('topic')+'\t'+item.get('title')+'\t'+item.get('publication')+'\t'+item.get('url')+'\t'+item.get('article')+'\n'
@@ -143,20 +146,20 @@ if __name__ == '__main__':
     parser.add_argument('--path',
                         '-p',
                         help="path to summaries",
-                        default='Results/summaries_top10_topic1.tsv',
+                        default='Results/topic1_summaries_top10.tsv',
                         required=False)
     parser.add_argument('--output',
                         '-o',
-                        default='Results/summaries_after_cb.tsv',
+                        default='Results/topic1_summaries_top10_after_cb.tsv',
                         help="Output file",
                         required=False)
 
     parser.add_argument('--threshold',
                         '-t',
-                        default=0.4,
+                        default=0.3,
                         help="Claimbuster threshold",
                         required=False)
  
     args = parser.parse_args()
 
-    cb(args.path, args.output, args.threshold)
+    cb(args.path, args.output, float(args.threshold))
