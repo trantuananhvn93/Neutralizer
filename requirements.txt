@@ -4,7 +4,7 @@ beautifulsoup4==4.5.3
 chardet==2.3.0
 chrome-gnome-shell==0.0.0
 configparser==3.5.0
-cryptography==1.7.1
+cryptography==3.2
 enum34==1.1.6
 futures==3.2.0
 html5lib==0.999999999
